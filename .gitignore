@@ -1,0 +1,32 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+venv/
+env/
+ENV/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Configuration files (personal info)
+config.py
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Test outputs
+test_output.txt
+*.log
+
+# MicroPython compiled files
+*.mpy
