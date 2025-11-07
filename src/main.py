@@ -1,159 +1,131 @@
 """
-Environmental Monitoring Dashboard - Main Program
-
-This program integrates the EnvironmentSensor and DashboardController classes
-to create an interactive environmental monitoring system with multiple display modes.
-
-Hardware Setup:
-- DHT22 Temperature/Humidity sensor on GPIO 22
-- LDR Photoresistor on GPIO 26 (ADC0)
-- LED indicator on GPIO 15
-- Mode button on GPIO 14
-
-Author: TODO: Your name
-Date: TODO: Date
+Environmental Monitoring Dashboard - STARTER
+Demonstrates OOP with MULTIPLE sensor objects monitoring different locations.
 """
-
-# TODO: Import necessary modules
-# import time
-# from environment_sensor import EnvironmentSensor
-# from dashboard_controller import DashboardController
+import time
+from environment_sensor import EnvironmentSensor
+from dashboard_controller import DashboardController
 
 
-def display_temperature_mode(conditions):
-    """
-    Display temperature and humidity information.
+def display_mode_info(dashboard, sensors):
+    """Display information based on current mode for ALL sensors."""
+    print(dashboard.get_mode_display_title())
     
-    Args:
-        conditions (dict): Dictionary with temperature and humidity data
-    """
-    # TODO: Print temperature mode header
-    # TODO: Print temperature value with 1 decimal place
-    # TODO: Print humidity value with 1 decimal place
-    # TODO: Print temperature status (Cold/Comfortable/Warm)
-    pass
-
-
-def display_light_mode(conditions):
-    """
-    Display light level information.
-    
-    Args:
-        conditions (dict): Dictionary with light_level data
-    """
-    # TODO: Print light mode header
-    # TODO: Print light level value
-    # TODO: Determine brightness category (Bright < 200, Medium 200-500, Dark > 500)
-    # TODO: Print brightness category
-    pass
-
-
-def display_alerts_mode(alerts):
-    """
-    Display active environmental alerts.
-    
-    Args:
-        alerts (dict): Dictionary with alert flags
-    """
-    # TODO: Print alerts mode header
-    # TODO: Check if any alerts are active
-    # TODO: If yes, list each active alert with ⚠️ symbol
-    # TODO: If no, print "✓ All conditions normal"
-    pass
-
-
-def display_history_mode(sensor, conditions):
-    """
-    Display historical data averages.
-    
-    Args:
-        sensor (EnvironmentSensor): Sensor object with history
-        conditions (dict): Current conditions dictionary
-    """
-    # TODO: Print history mode header
-    # TODO: Get and print average temperature from history
-    # TODO: Print number of readings in history
-    # TODO: Print current temperature for comparison
-    pass
+    for sensor in sensors:
+        conditions = sensor.read_conditions()
+        sensor.add_to_history(conditions)
+        
+        if dashboard.display_mode == "temperature":
+            print(f"  {conditions['location']}: {conditions['temperature']:.1f}°C, "
+                  f"{conditions['humidity']:.1f}%")
+        
+        elif dashboard.display_mode == "light":
+            if conditions['light_level'] < 200:
+                brightness = "Bright"
+            elif conditions['light_level'] <= 500:
+                brightness = "Medium"
+            else:
+                brightness = "Dark"
+            print(f"  {conditions['location']}: {conditions['light_level']} ({brightness})")
+        
+        elif dashboard.display_mode == "alerts":
+            alerts = sensor.check_alerts()
+            if alerts['any_alerts']:
+                alert_list = []
+                if alerts['high_temp']: alert_list.append("Hot")
+                if alerts['low_temp']: alert_list.append("Cold")
+                if alerts['high_humidity']: alert_list.append("Humid")
+                if alerts['low_light']: alert_list.append("Dark")
+                print(f"  [!] {conditions['location']}: {', '.join(alert_list)}")
+            else:
+                print(f"  [OK] {conditions['location']}: Normal")
+        
+        elif dashboard.display_mode == "history":
+            avg = sensor.get_average_temp()
+            count = len(sensor.reading_history)
+            print(f"  {conditions['location']}: Avg {avg:.1f}°C ({count} readings)")
 
 
 def main():
-    """
-    Main program loop for Environmental Monitoring Dashboard.
-    
-    Continuously monitors environmental conditions and displays information
-    based on user-selected mode.
-    """
-    print("=" * 50)
-    print("  ENVIRONMENTAL MONITORING DASHBOARD")
-    print("=" * 50)
+    """Main monitoring loop with MULTIPLE sensor objects."""
+    print("=" * 60)
+    print("  MULTI-LOCATION ENVIRONMENTAL MONITORING DASHBOARD")
+    print("=" * 60)
     print("\nInitializing hardware...")
     
-    # TODO: Create EnvironmentSensor object with location "LAB_A", pins 22 and 26
-    # TODO: Create DashboardController object with LED pin 15, button pin 14
+    # TODO: Create MULTIPLE sensor objects - demonstrating OOP concept!
+    # TODO: Each object is independent with its own location and history
+    # TODO: Create a list called 'sensors' with at least 3 EnvironmentSensor objects
+    # TODO: Use different location names like "LAB_A", "LAB_B", "OFFICE"
+    # TODO: All sensors use the same hardware pins: temp_pin=22, light_pin=26
+    # Hint: sensors = [EnvironmentSensor(...), EnvironmentSensor(...), ...]
     
-    print("✓ Hardware initialized!")
-    print("\nPress button to cycle display modes:")
-    print("  1. Temperature  2. Light  3. Alerts  4. History")
-    print("\nStarting monitoring...")
-    print("-" * 50)
+    # Create single dashboard controller
+    dashboard = DashboardController(15, 14)
     
-    # Variables to track button state (prevent multiple presses)
+    print(f"[OK] Initialized {len(sensors)} sensor objects!")
+    print("  Each sensor maintains its own location and history.")
+    print("\nPress button to cycle: Temperature → Light → Alerts → History")
+    print("-" * 60)
+    
     button_was_pressed = False
     reading_count = 0
     
     try:
-        # TODO: Create infinite loop (while True)
         while True:
-            # --- BUTTON HANDLING ---
-            # TODO: Read current button state
-            # TODO: If button is pressed AND was not pressed before:
-            #       - Cycle display mode
-            #       - Update button_was_pressed to True
-            # TODO: If button is not pressed:
-            #       - Update button_was_pressed to False
+            # Button handling
+            button_pressed = dashboard.read_button()
+            if button_pressed and not button_was_pressed:
+                dashboard.cycle_display_mode()
+                print(f"\n[Switched to {dashboard.display_mode.upper()} mode]")
+                button_was_pressed = True
+            elif not button_pressed:
+                button_was_pressed = False
             
-            # --- SENSOR READING ---
-            # TODO: Read environmental conditions from sensor
-            # TODO: Add reading to sensor history
-            # TODO: Check for alerts
-            # TODO: Use dashboard to indicate alert status with LED
-            
-            # --- INCREMENT COUNTER ---
+            # Display data from all sensors
             reading_count += 1
+            current_time = time.localtime()
+            hours = current_time[3]
+            minutes = current_time[4]
+            seconds = current_time[5]
+            print(f"\n[Reading #{reading_count}] - {hours:02d}:{minutes:02d}:{seconds:02d}")
+            display_mode_info(dashboard, sensors)
             
-            # --- DISPLAY INFORMATION ---
-            # TODO: Print separator line
-            # TODO: Print reading number and location
-            # TODO: Get and print display mode title from dashboard
+            # Check for any alerts across all sensors
+            any_sensor_alert = False
+            for s in sensors:
+                if s.check_alerts()['any_alerts']:
+                    any_sensor_alert = True
+                    break
+            dashboard.indicate_alert({'any_alerts': any_sensor_alert})
             
-            # TODO: Use if-elif-else to display based on dashboard.display_mode
-            # TODO: If mode is "temperature": call display_temperature_mode()
-            # TODO: Elif mode is "light": call display_light_mode()
-            # TODO: Elif mode is "alerts": call display_alerts_mode()
-            # TODO: Elif mode is "history": call display_history_mode()
+            # Show statistics every 10 readings
+            if reading_count % 10 == 0:
+                stats = dashboard.get_mode_stats()
+                print(f"\n[Stats] {stats['button_presses']} button presses, "
+                      f"Modes: {stats['mode_counts']}")
             
-            # --- SHOW STATISTICS (every 10 readings) ---
-            # TODO: If reading_count is divisible by 10:
-            #       - Get mode statistics from dashboard
-            #       - Print button press count and mode counts
-            
-            # TODO: Wait 2 seconds before next reading
-            
+            time.sleep(2)
+    
     except KeyboardInterrupt:
-        # Handle Ctrl+C gracefully
-        print("\n" + "=" * 50)
+        print("\n" + "=" * 60)
         print("  MONITORING STOPPED")
-        print("=" * 50)
+        print("=" * 60)
         
-        # TODO: Get final statistics from dashboard
-        # TODO: Print final summary with total readings and button presses
-        # TODO: Print goodbye message
+        # Show final summary for each sensor
+        print(f"\nFinal Summary ({reading_count} readings):")
+        for sensor in sensors:
+            avg = sensor.get_average_temp()
+            print(f"  {sensor.location}: Avg {avg:.1f}°C, "
+                  f"{len(sensor.reading_history)} stored readings")
         
-        # TODO: Turn off LED
-        print("\n✓ Hardware cleaned up. Goodbye!")
+        stats = dashboard.get_mode_stats()
+        print(f"\nDashboard: {stats['button_presses']} button presses")
+        print(f"Mode usage: {stats['mode_counts']}")
+        
+        dashboard.set_led_state(False)
+        print("\n[OK] Hardware cleaned up. Goodbye!")
 
 
-# Program entry point
 if __name__ == "__main__":
     main()
