@@ -1,5 +1,14 @@
 # GatorGrade Configuration for Lab 09
 
+# Run assessment tests to verify class correctness
+- description: assessment.py verifies all class implementations are correct
+  check: MatchCommandFragment
+  options:
+    command: "cd src && python assessment.py"
+    fragment: "ASSESSMENT RESULT: All tests passed / True"
+    count: 1
+    exact: true
+
 # Check Python syntax is valid
 - src/environment_sensor.py:
     - description: Python syntax is valid in environment_sensor.py
@@ -365,28 +374,28 @@
 
 # Check that TODOs are replaced
 - src/environment_sensor.py:
-    - description: No TODO markers remain in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "# TODO"
+    - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)
+      check: MatchFileFragment
+      options:
+        fragment: TODO
         count: 0
-        exact: false
+        exact: true
 
 - src/dashboard_controller.py:
-    - description: No TODO markers remain in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "# TODO"
+    - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)
+      check: MatchFileFragment
+      options:
+        fragment: TODO
         count: 0
-        exact: false
+        exact: true
 
 - src/main.py:
-    - description: No TODO markers remain in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "# TODO"
+    - description: Complete all TODOs (no TODO comments remaining in main.py)
+      check: MatchFileFragment
+      options:
+        fragment: TODO
         count: 0
-        exact: false
+        exact: true
 
 - writing/reflection.md: 
     - description: Reflection document exists
