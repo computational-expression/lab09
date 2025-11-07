@@ -1,449 +1,895 @@
-# GatorGrade Configuration for Lab 09
+# GatorGrade Configuration for Lab 09 Starter# GatorGrade Configuration for Lab 09
 
-# Run assessment tests to verify class correctness
-- description: assessment.py verifies all class implementations are correct
-  check: MatchCommandFragment
-  options:
-    command: "cd src && python assessment.py"
-    fragment: "ASSESSMENT RESULT: All tests passed / True"
-    count: 1
-    exact: true
 
-# Check Python syntax is valid
-- src/environment_sensor.py:
-    - description: Python syntax is valid in environment_sensor.py
-      check: ExecuteCommand
-      options:
-        command: python3 -m py_compile src/environment_sensor.py
 
-- src/dashboard_controller.py:
-    - description: Python syntax is valid in dashboard_controller.py
-      check: ExecuteCommand
-      options:
-        command: python3 -m py_compile src/dashboard_controller.py
+# Run assessment tests to verify class correctness# Run assessment tests to verify class correctness
+
+- description: assessment.py verifies all class implementations are correct- description: assessment.py verifies all class implementations are correct
+
+  check: MatchCommandFragment  check: MatchCommandFragment
+
+  options:  options:
+
+    command: "cd src && python assessment.py"    command: "cd src && python assessment.py"
+
+    fragment: "ASSESSMENT RESULT: All tests passed / True"    fragment: "ASSESSMENT RESULT: All tests passed / True"
+
+    count: 1    count: 1
+
+    exact: true    exact: true
+
+
+
+# Check Python syntax is valid# Check Python syntax is valid
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Python syntax is valid in environment_sensor.py    - description: Python syntax is valid in environment_sensor.py
+
+      check: ExecuteCommand      check: ExecuteCommand
+
+      options:      options:
+
+        command: python3 -m py_compile src/environment_sensor.py        command: python3 -m py_compile src/environment_sensor.py
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Python syntax is valid in dashboard_controller.py    - description: Python syntax is valid in dashboard_controller.py
+
+      check: ExecuteCommand      check: ExecuteCommand
+
+      options:      options:
+
+        command: python3 -m py_compile src/dashboard_controller.py        command: python3 -m py_compile src/dashboard_controller.py
+
+
+
+- src/main.py:- src/main.py:
+
+    - description: Python syntax is valid in main.py    - description: Python syntax is valid in main.py
+
+      check: ExecuteCommand      check: ExecuteCommand
+
+      options:      options:
+
+        command: python3 -m py_compile src/main.py        command: python3 -m py_compile src/main.py
+
+
+
+# Check for class definitions# Check for class definitions
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: EnvironmentSensor class is defined in environment_sensor.py    - description: EnvironmentSensor class is defined in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "class EnvironmentSensor"        fragment: "class EnvironmentSensor"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: DashboardController class is defined in dashboard_controller.py    - description: DashboardController class is defined in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "class DashboardController"        fragment: "class DashboardController"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+# Check for required methods in EnvironmentSensor# Check for required methods in EnvironmentSensor
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has __init__ method in environment_sensor.py    - description: Has __init__ method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def __init__"        fragment: "def __init__"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has read_temperature method in environment_sensor.py    - description: Has read_temperature method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def read_temperature"        fragment: "def read_temperature"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has read_light method in environment_sensor.py    - description: Has read_light method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def read_light"        fragment: "def read_light"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has read_conditions method in environment_sensor.py    - description: Has read_conditions method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def read_conditions"        fragment: "def read_conditions"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has add_to_history method in environment_sensor.py    - description: Has add_to_history method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def add_to_history"        fragment: "def add_to_history"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has get_average_temp method in environment_sensor.py    - description: Has get_average_temp method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def get_average_temp"        fragment: "def get_average_temp"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has get_status_summary method in environment_sensor.py    - description: Has get_status_summary method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def get_status_summary"        fragment: "def get_status_summary"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has check_alerts method in environment_sensor.py    - description: Has check_alerts method in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def check_alerts"        fragment: "def check_alerts"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+# Check for required methods in DashboardController# Check for required methods in DashboardController
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has __init__ method in dashboard_controller.py    - description: Has __init__ method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def __init__"        fragment: "def __init__"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has set_led_state method in dashboard_controller.py    - description: Has set_led_state method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def set_led_state"        fragment: "def set_led_state"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has blink_led method in dashboard_controller.py    - description: Has blink_led method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def blink_led"        fragment: "def blink_led"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has read_button method in dashboard_controller.py    - description: Has read_button method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def read_button"        fragment: "def read_button"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has cycle_display_mode method in dashboard_controller.py    - description: Has cycle_display_mode method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def cycle_display_mode"        fragment: "def cycle_display_mode"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has indicate_alert method in dashboard_controller.py    - description: Has indicate_alert method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def indicate_alert"        fragment: "def indicate_alert"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has get_mode_stats method in dashboard_controller.py    - description: Has get_mode_stats method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def get_mode_stats"        fragment: "def get_mode_stats"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has reset_stats method in dashboard_controller.py    - description: Has reset_stats method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def reset_stats"        fragment: "def reset_stats"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has get_mode_display_title method in dashboard_controller.py    - description: Has get_mode_display_title method in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def get_mode_display_title"        fragment: "def get_mode_display_title"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+# Check for proper usage in EnvironmentSensor# Check for proper usage in EnvironmentSensor
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Uses self.reading_history list in environment_sensor.py    - description: Uses self.reading_history list in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "self.reading_history"        fragment: "self.reading_history"
+
+        count: 3        count: 3
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Uses dictionary to return data in environment_sensor.py    - description: Uses dictionary to return data in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "return {"        fragment: "return {"
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Uses DHT22 sensor in environment_sensor.py    - description: Uses DHT22 sensor in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "dht.DHT22"        fragment: "dht.DHT22"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Uses ADC for light sensor in environment_sensor.py    - description: Uses ADC for light sensor in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "ADC(Pin("        fragment: "ADC(Pin("
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+# Check for proper usage in DashboardController# Check for proper usage in DashboardController
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses self.display_mode attribute in dashboard_controller.py    - description: Uses self.display_mode attribute in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "self.display_mode"        fragment: "self.display_mode"
+
+        count: 3        count: 3
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses self.button_press_count attribute in dashboard_controller.py    - description: Uses self.button_press_count attribute in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "self.button_press_count"        fragment: "self.button_press_count"
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses self.mode_history list in dashboard_controller.py    - description: Uses self.mode_history list in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "self.mode_history"        fragment: "self.mode_history"
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses .on() method for LED in dashboard_controller.py    - description: Uses .on() method for LED in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: ".on()"        fragment: ".on()"
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses .off() method for LED in dashboard_controller.py    - description: Uses .off() method for LED in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: ".off()"        fragment: ".off()"
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses for loop in dashboard_controller.py    - description: Uses for loop in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "for "        fragment: "for "
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Uses if statements in dashboard_controller.py    - description: Uses if statements in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "if "        fragment: "if "
+
+        count: 5        count: 5
+
+        exact: false        exact: false
+
+
+
+# Check for docstrings# Check for docstrings
+
+- src/environment_sensor.py:- src/environment_sensor.py:
+
+    - description: Has module-level docstring in environment_sensor.py    - description: Has module-level docstring in environment_sensor.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: '"""'        fragment: '"""'
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+- src/dashboard_controller.py:- src/dashboard_controller.py:
+
+    - description: Has module-level docstring in dashboard_controller.py    - description: Has module-level docstring in dashboard_controller.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: '"""'        fragment: '"""'
+
+        count: 2        count: 2
+
+        exact: false        exact: false
+
+
+
+# Check for main function and multiple objects# Check for main function and multiple objects
+
+- src/main.py:- src/main.py:
+
+    - description: Has main function in main.py    - description: Has main function in main.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "def main"        fragment: "def main"
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/main.py:- src/main.py:
+
+    - description: Imports from environment_sensor in main.py    - description: Creates multiple EnvironmentSensor objects in main.py (at least 3)
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "from environment_sensor import"        fragment: "EnvironmentSensor("
+
+        count: 1        count: 3
+
+        exact: false        exact: false
+
+
+
+- src/main.py:- src/main.py:
+
+    - description: Imports from dashboard_controller in main.py    - description: Creates DashboardController object in main.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "from dashboard_controller import"        fragment: "DashboardController("
+
+        count: 1        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/main.py:- src/main.py:
+
+    - description: Creates multiple EnvironmentSensor objects in main.py (at least 3)    - description: Uses sensors list in main.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "EnvironmentSensor("        fragment: "sensors"
+
+        count: 3        count: 5
+
+        exact: false        exact: false
+
+
+
+- src/main.py:# Check for control flow in main.py
+
+    - description: Creates DashboardController object in main.py- src/main.py:
+
+      check: MatchFileFragment    - description: Uses while loop in main.py
+
+      options:    - check: MatchFileFragment
+
+        fragment: "DashboardController("    - options:
+
+        count: 1        fragment: "while"
+
+        exact: false        count: 1
+
+        exact: false
 
 - src/main.py:
-    - description: Python syntax is valid in main.py
-      check: ExecuteCommand
-      options:
-        command: python3 -m py_compile src/main.py
 
-# Check for class definitions
-- src/environment_sensor.py:
-    - description: EnvironmentSensor class is defined in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "class EnvironmentSensor"
-        count: 1
-        exact: false
+    - description: Uses sensors list in main.py- src/main.py:
 
-- src/dashboard_controller.py:
-    - description: DashboardController class is defined in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "class DashboardController"
-        count: 1
-        exact: false
+      check: MatchFileFragment    - description: Uses for loop to iterate through sensors in main.py
 
-# Check for required methods in EnvironmentSensor
-- src/environment_sensor.py:
-    - description: Has __init__ method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def __init__"
-        count: 1
-        exact: false
+      options:    - check: MatchFileFragment
 
-- src/environment_sensor.py:
-    - description: Has read_temperature method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def read_temperature"
-        count: 1
-        exact: false
+        fragment: "sensors"    - options:
 
-- src/environment_sensor.py:
-    - description: Has read_light method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def read_light"
-        count: 1
-        exact: false
+        count: 5        fragment: "for sensor in sensors"
 
-- src/environment_sensor.py:
-    - description: Has read_conditions method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def read_conditions"
-        count: 1
-        exact: false
+        exact: false        count: 2
 
-- src/environment_sensor.py:
-    - description: Has add_to_history method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def add_to_history"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Has get_average_temp method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def get_average_temp"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Has get_status_summary method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def get_status_summary"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Has check_alerts method in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def check_alerts"
-        count: 1
-        exact: false
-
-# Check for required methods in DashboardController
-- src/dashboard_controller.py:
-    - description: Has __init__ method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def __init__"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has set_led_state method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def set_led_state"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has blink_led method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def blink_led"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has read_button method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def read_button"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has cycle_display_mode method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def cycle_display_mode"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has indicate_alert method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def indicate_alert"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has get_mode_stats method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def get_mode_stats"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has reset_stats method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def reset_stats"
-        count: 1
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has get_mode_display_title method in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def get_mode_display_title"
-        count: 1
-        exact: false
-
-# Check for proper usage in EnvironmentSensor
-- src/environment_sensor.py:
-    - description: Uses self.reading_history list in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "self.reading_history"
-        count: 3
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Uses dictionary to return data in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "return {"
-        count: 2
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Uses DHT22 sensor in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "dht.DHT22"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Uses ADC for light sensor in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "ADC(Pin("
-        count: 1
-        exact: false
-
-# Check for proper usage in DashboardController
-- src/dashboard_controller.py:
-    - description: Uses self.display_mode attribute in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "self.display_mode"
-        count: 3
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Uses self.button_press_count attribute in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "self.button_press_count"
-        count: 2
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Uses self.mode_history list in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "self.mode_history"
-        count: 2
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Uses .on() method for LED in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: ".on()"
-        count: 2
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Uses .off() method for LED in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: ".off()"
-        count: 2
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Uses for loop in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "for "
-        count: 2
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Uses if statements in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "if "
-        count: 5
-        exact: false
-
-# Check for docstrings
-- src/environment_sensor.py:
-    - description: Has module-level docstring in environment_sensor.py
-    - check: MatchFileFragment
-    - options:
-        fragment: '"""'
-        count: 2
-        exact: false
-
-- src/dashboard_controller.py:
-    - description: Has module-level docstring in dashboard_controller.py
-    - check: MatchFileFragment
-    - options:
-        fragment: '"""'
-        count: 2
-        exact: false
-
-# Check for main function and multiple objects
-- src/main.py:
-    - description: Has main function in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "def main"
-        count: 1
-        exact: false
-
-- src/main.py:
-    - description: Creates multiple EnvironmentSensor objects in main.py (at least 3)
-    - check: MatchFileFragment
-    - options:
-        fragment: "EnvironmentSensor("
-        count: 3
-        exact: false
-
-- src/main.py:
-    - description: Creates DashboardController object in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "DashboardController("
-        count: 1
-        exact: false
-
-- src/main.py:
-    - description: Uses sensors list in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "sensors"
-        count: 5
         exact: false
 
 # Check for control flow in main.py
-- src/main.py:
-    - description: Uses while loop in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "while"
-        count: 1
-        exact: false
 
-- src/main.py:
-    - description: Uses for loop to iterate through sensors in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "for sensor in sensors"
-        count: 2
-        exact: false
+- src/main.py:- src/main.py:
 
-- src/main.py:
-    - description: Uses elif for display modes in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "elif"
-        count: 3
-        exact: false
+    - description: Uses while loop in main.py    - description: Uses elif for display modes in main.py
 
-- src/main.py:
-    - description: Uses time.sleep in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "time.sleep"
-        count: 1
-        exact: false
+      check: MatchFileFragment    - check: MatchFileFragment
 
-- src/main.py:
-    - description: Uses try-except for KeyboardInterrupt in main.py
-    - check: MatchFileFragment
-    - options:
-        fragment: "except KeyboardInterrupt"
-        count: 1
-        exact: false
+      options:    - options:
+
+        fragment: "while"        fragment: "elif"
+
+        count: 1        count: 3
+
+        exact: false        exact: false
+
+
+
+- src/main.py:- src/main.py:
+
+    - description: Uses for loop to iterate through sensors in main.py    - description: Uses time.sleep in main.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "for sensor in sensors"        fragment: "time.sleep"
+
+        count: 2        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/main.py:- src/main.py:
+
+    - description: Uses elif for display modes in main.py    - description: Uses try-except for KeyboardInterrupt in main.py
+
+      check: MatchFileFragment    - check: MatchFileFragment
+
+      options:    - options:
+
+        fragment: "elif"        fragment: "except KeyboardInterrupt"
+
+        count: 3        count: 1
+
+        exact: false        exact: false
+
+
+
+- src/main.py:# Reflection checks
+
+    - description: Uses time.sleep in main.py- writing/reflection.md:
+
+      check: MatchFileFragment    - description: Reflection has sufficient content (at least 500 words)
+
+      options:    - check: CountFileWords
+
+        fragment: "time.sleep"    - options:
+
+        count: 1        count: 500
+
+        exact: false        exact: false
+
+
+
+- src/main.py:# Check that TODOs are replaced
+
+    - description: Uses try-except for KeyboardInterrupt in main.py- src/environment_sensor.py:
+
+      check: MatchFileFragment    - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)
+
+      options:      check: MatchFileFragment
+
+        fragment: "except KeyboardInterrupt"      options:
+
+        count: 1        fragment: TODO
+
+        exact: false        count: 0
+
+        exact: true
 
 # Reflection checks
+
+- writing/reflection.md:- src/dashboard_controller.py:
+
+    - description: Reflection has sufficient content (at least 500 words)    - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)
+
+      check: CountFileWords      check: MatchFileFragment
+
+      options:      options:
+
+        count: 500        fragment: TODO
+
+        exact: false        count: 0
+
+        exact: true
+
 - writing/reflection.md:
-    - description: Reflection has sufficient content (at least 500 words)
-    - check: CountFileWords
-    - options:
-        count: 500
+
+    - description: Discusses object-oriented design in reflection- src/main.py:
+
+      check: MatchFileFragment    - description: Complete all TODOs (no TODO comments remaining in main.py)
+
+      options:      check: MatchFileFragment
+
+        fragment: "Object-Oriented"      options:
+
+        count: 1        fragment: TODO
+
+        exact: false        count: 0
+
+        exact: true
+
+- writing/reflection.md:
+
+    - description: Discusses Git workflow in reflection- writing/reflection.md: 
+
+      check: MatchFileFragment    - description: Reflection document exists
+
+      options:    - check: ConfirmFileExists
+
+        fragment: "Git Workflow"
+
+        count: 1- src/environment_sensor.py:
+
+        exact: false    - description: EnvironmentSensor module exists
+
+    - check: ConfirmFileExists
+
+- writing/reflection.md:
+
+    - description: Discusses code review experience in reflection- src/dashboard_controller.py:
+
+      check: MatchFileFragment    - description: DashboardController module exists
+
+      options:    - check: ConfirmFileExists
+
+        fragment: "Code Review"
+
+        count: 1- src/main.py:
+
+        exact: false    - description: Main program exists
+
+    - check: ConfirmFileExists
+
+- writing/reflection.md:
+
+    - description: Discusses hardware integration in reflection# Check for class definitions
+
+      check: MatchFileFragment- src/environment_sensor.py:
+
+      options:    - description: EnvironmentSensor class is defined
+
+        fragment: "Hardware"    - check: MatchFileFragment
+
+        count: 1    - options:
+
+        exact: false        fragment: "class EnvironmentSensor"
+
+        count: 1
+
+# Check that TODOs are replaced (students should complete all TODOs)        exact: false
+
+- src/environment_sensor.py:
+
+    - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)- src/dashboard_controller.py:
+
+      check: MatchFileFragment    - description: DashboardController class is defined
+
+      options:    - check: MatchFileFragment
+
+        fragment: "TODO"    - options:
+
+        count: 0        fragment: "class DashboardController"
+
+        exact: true        count: 1
+
         exact: false
 
-# Check that TODOs are replaced
-- src/environment_sensor.py:
-    - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)
-      check: MatchFileFragment
-      options:
-        fragment: TODO
-        count: 0
-        exact: true
-
 - src/dashboard_controller.py:
-    - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)
-      check: MatchFileFragment
-      options:
-        fragment: TODO
-        count: 0
-        exact: true
 
-- src/main.py:
+    - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)# Check for required methods in EnvironmentSensor
+
+      check: MatchFileFragment- src/environment_sensor.py:
+
+      options:    - description: Has __init__ method
+
+        fragment: "TODO"    - check: MatchFileFragment
+
+        count: 0    - options:
+
+        exact: true        fragment: "def __init__"
+
+        count: 1
+
+- src/main.py:        exact: false
+
     - description: Complete all TODOs (no TODO comments remaining in main.py)
-      check: MatchFileFragment
-      options:
-        fragment: TODO
-        count: 0
-        exact: true
 
-- writing/reflection.md: 
-    - description: Reflection document exists
-    - check: ConfirmFileExists
+      check: MatchFileFragment- src/environment_sensor.py:
 
-- src/environment_sensor.py:
-    - description: EnvironmentSensor module exists
-    - check: ConfirmFileExists
+      options:    - description: Has read_temperature method
 
-- src/dashboard_controller.py:
-    - description: DashboardController module exists
-    - check: ConfirmFileExists
+        fragment: "TODO"    - check: MatchFileFragment
 
-- src/main.py:
-    - description: Main program exists
-    - check: ConfirmFileExists
+        count: 0    - options:
 
-# Check for class definitions
-- src/environment_sensor.py:
-    - description: EnvironmentSensor class is defined
-    - check: MatchFileFragment
-    - options:
-        fragment: "class EnvironmentSensor"
-        count: 1
-        exact: false
+        exact: true        fragment: "def read_temperature"
 
-- src/dashboard_controller.py:
-    - description: DashboardController class is defined
-    - check: MatchFileFragment
-    - options:
-        fragment: "class DashboardController"
-        count: 1
-        exact: false
-
-# Check for required methods in EnvironmentSensor
-- src/environment_sensor.py:
-    - description: Has __init__ method
-    - check: MatchFileFragment
-    - options:
-        fragment: "def __init__"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Has read_temperature method
-    - check: MatchFileFragment
-    - options:
-        fragment: "def read_temperature"
         count: 1
         exact: false
 
