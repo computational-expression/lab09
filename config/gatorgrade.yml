@@ -1,32 +1,20 @@
 # GatorGrade Configuration for Lab 09 Solution
 
-# Run assessment tests to verify class correctness
-- description: assessment.py verifies all class implementations are correct
-  check: MatchCommandFragment
-  options:
-    command: "cd src && python assessment.py"
-    fragment: "ASSESSMENT RESULT: All tests passed / True"
-    count: 1
-    exact: true
-
 # Check Python syntax is valid
-- src/environment_sensor.py:
-    - description: Python syntax is valid in environment_sensor.py
-      check: ExecuteCommand
-      options:
-        command: python3 -m py_compile src/environment_sensor.py
+- description: Python syntax is valid in environment_sensor.py
+  check: ExecuteCommand
+  options:
+    command: "python3 -m py_compile src/environment_sensor.py"
 
-- src/dashboard_controller.py:
-    - description: Python syntax is valid in dashboard_controller.py
-      check: ExecuteCommand
-      options:
-        command: python3 -m py_compile src/dashboard_controller.py
+- description: Python syntax is valid in dashboard_controller.py
+  check: ExecuteCommand
+  options:
+    command: "python3 -m py_compile src/dashboard_controller.py"
 
-- src/main.py:
-    - description: Python syntax is valid in main.py
-      check: ExecuteCommand
-      options:
-        command: python3 -m py_compile src/main.py
+- description: Python syntax is valid in main.py
+  check: ExecuteCommand
+  options:
+    command: "python3 -m py_compile src/main.py"
 
 # Check for class definitions
 - src/environment_sensor.py:
@@ -51,22 +39,6 @@
       check: MatchFileFragment
       options:
         fragment: "def __init__"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Has read_temperature method in environment_sensor.py
-      check: MatchFileFragment
-      options:
-        fragment: "def read_temperature"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Has read_light method in environment_sensor.py
-      check: MatchFileFragment
-      options:
-        fragment: "def read_light"
         count: 1
         exact: false
 
@@ -152,6 +124,14 @@
         exact: false
 
 - src/dashboard_controller.py:
+    - description: Has sound_buzzer method in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "def sound_buzzer"
+        count: 1
+        exact: false
+
+- src/dashboard_controller.py:
     - description: Has indicate_alert method in dashboard_controller.py
       check: MatchFileFragment
       options:
@@ -205,14 +185,6 @@
       check: MatchFileFragment
       options:
         fragment: "dht.DHT22"
-        count: 1
-        exact: false
-
-- src/environment_sensor.py:
-    - description: Uses ADC for light sensor in environment_sensor.py
-      check: MatchFileFragment
-      options:
-        fragment: "ADC(Pin("
         count: 1
         exact: false
 

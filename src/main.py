@@ -1,5 +1,5 @@
 """
-Environmental Monitoring Dashboard - STARTER
+Environmental Monitoring Dashboard - SOLUTION
 Demonstrates OOP with MULTIPLE sensor objects monitoring different locations.
 """
 import time
@@ -16,17 +16,8 @@ def display_mode_info(dashboard, sensors):
         sensor.add_to_history(conditions)
         
         if dashboard.display_mode == "temperature":
-            print(f"  {conditions['location']}: {conditions['temperature']:.1f}°C, "
+            print(f"  {conditions['location']}: {conditions['temperature']:.1f}C, "
                   f"{conditions['humidity']:.1f}%")
-        
-        elif dashboard.display_mode == "light":
-            if conditions['light_level'] < 200:
-                brightness = "Bright"
-            elif conditions['light_level'] <= 500:
-                brightness = "Medium"
-            else:
-                brightness = "Dark"
-            print(f"  {conditions['location']}: {conditions['light_level']} ({brightness})")
         
         elif dashboard.display_mode == "alerts":
             alerts = sensor.check_alerts()
@@ -35,7 +26,6 @@ def display_mode_info(dashboard, sensors):
                 if alerts['high_temp']: alert_list.append("Hot")
                 if alerts['low_temp']: alert_list.append("Cold")
                 if alerts['high_humidity']: alert_list.append("Humid")
-                if alerts['low_light']: alert_list.append("Dark")
                 print(f"  [!] {conditions['location']}: {', '.join(alert_list)}")
             else:
                 print(f"  [OK] {conditions['location']}: Normal")
@@ -43,7 +33,7 @@ def display_mode_info(dashboard, sensors):
         elif dashboard.display_mode == "history":
             avg = sensor.get_average_temp()
             count = len(sensor.reading_history)
-            print(f"  {conditions['location']}: Avg {avg:.1f}°C ({count} readings)")
+            print(f"  {conditions['location']}: Avg {avg:.1f}C ({count} readings)")
 
 
 def main():
@@ -53,36 +43,36 @@ def main():
     print("=" * 60)
     print("\nInitializing hardware...")
     
-    # TODO: Create MULTIPLE sensor objects - demonstrating OOP concept!
-    # TODO: Each object is independent with its own location and history
-    # TODO: Create a list called 'sensors' with at least 3 EnvironmentSensor objects
-    # TODO: Use different location names like "LAB_A", "LAB_B", "OFFICE"
-    # TODO: All sensors use the same hardware pins: temp_pin=22, light_pin=26
-    # Hint: sensors = [EnvironmentSensor(...), EnvironmentSensor(...), ...]
+    # Create MULTIPLE sensor objects - demonstrating OOP concept!
+    # Each object is independent with its own location and history
+    sensors = [
+        EnvironmentSensor("LAB_A", 2),  # Primary sensor
+        EnvironmentSensor("LAB_B", 2),  # Same hardware, different location tracking
+        EnvironmentSensor("OFFICE", 2)  # Another location
+    ]
     
     # Create single dashboard controller
-    dashboard = DashboardController(15, 14)
+    dashboard = DashboardController(15, 16, 14)  # LED=15, Button=16, Buzzer=14
     
     print(f"[OK] Initialized {len(sensors)} sensor objects!")
     print("  Each sensor maintains its own location and history.")
-    print("\nPress button to cycle: Temperature → Light → Alerts → History")
+    print("\n" + "=" * 60)
+    print("HOW TO USE:")
+    print("  - Press BUTTON to cycle display modes")
+    print("  - Press Ctrl+C to quit")
+    print("=" * 60)
+    print(f"\nCurrent Mode: {dashboard.display_mode.upper()}")
+    print("Mode Order: TEMPERATURE -> ALERTS -> HISTORY -> (repeat)")
+    print("\nStarting in 3 seconds...")
+    time.sleep(3)
     print("-" * 60)
     
-    button_was_pressed = False
     reading_count = 0
+    last_button_state = False
     
     try:
         while True:
-            # Button handling
-            button_pressed = dashboard.read_button()
-            if button_pressed and not button_was_pressed:
-                dashboard.cycle_display_mode()
-                print(f"\n[Switched to {dashboard.display_mode.upper()} mode]")
-                button_was_pressed = True
-            elif not button_pressed:
-                button_was_pressed = False
-            
-            # Display data from all sensors
+            # Take and display sensor readings
             reading_count += 1
             current_time = time.localtime()
             hours = current_time[3]
@@ -97,15 +87,32 @@ def main():
                 if s.check_alerts()['any_alerts']:
                     any_sensor_alert = True
                     break
-            dashboard.indicate_alert({'any_alerts': any_sensor_alert})
+            
+            # Activate LED and buzzer if there are alerts
+            if any_sensor_alert:
+                dashboard.indicate_alert({'any_alerts': True})
+                print("  [!] ALERT ACTIVE - LED blinking, buzzer sounding")
             
             # Show statistics every 10 readings
             if reading_count % 10 == 0:
                 stats = dashboard.get_mode_stats()
-                print(f"\n[Stats] {stats['button_presses']} button presses, "
+                print(f"\n[Statistics] {stats['button_presses']} button presses, "
                       f"Modes: {stats['mode_counts']}")
             
-            time.sleep(2)
+            # Wait 5 seconds, but check button frequently during wait
+            print("\n[Press button to change mode]")
+            for i in range(10):  # Check button 10 times over 5 seconds
+                button_is_pressed = dashboard.read_button()
+                
+                # Detect button press (was not pressed, now pressed)
+                if button_is_pressed and not last_button_state:
+                    dashboard.cycle_display_mode()
+                    print(f"\n{'*' * 60}")
+                    print(f"  BUTTON PRESSED - Switched to {dashboard.display_mode.upper()} mode")
+                    print(f"{'*' * 60}\n")
+                
+                last_button_state = button_is_pressed
+                time.sleep(0.5)  # Check every 0.5 seconds
     
     except KeyboardInterrupt:
         print("\n" + "=" * 60)
@@ -116,7 +123,7 @@ def main():
         print(f"\nFinal Summary ({reading_count} readings):")
         for sensor in sensors:
             avg = sensor.get_average_temp()
-            print(f"  {sensor.location}: Avg {avg:.1f}°C, "
+            print(f"  {sensor.location}: Avg {avg:.1f} C, "
                   f"{len(sensor.reading_history)} stored readings")
         
         stats = dashboard.get_mode_stats()

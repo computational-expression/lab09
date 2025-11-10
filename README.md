@@ -2,7 +2,7 @@
 
 ## Overview
 
-In this lab, you will create an Environmental Monitoring Dashboard that combines sensors from Lab 08 (temperature, light) with interactive hardware from Lab 06 (LED, button). You will practice object-oriented programming by creating two classes: `EnvironmentSensor` and `DashboardController`.
+In this lab, you will create an Environmental Monitoring Dashboard that combines the temperature sensor from Lab 08 with interactive hardware from Lab 06 (LED, button). You will practice object-oriented programming by creating two classes: `EnvironmentSensor` and `DashboardController`.
 
 **Important:** This lab emphasizes **collaborative Git workflow**. You will work individually on your code but must:
 - Create a feature branch for each class
@@ -21,22 +21,46 @@ In this lab, you will create an Environmental Monitoring Dashboard that combines
 ## Hardware Requirements
 
 From **Lab 08:**
-- DHT22 Temperature/Humidity Sensor (GPIO 22)
-- LDR Photoresistor (GPIO 26/ADC0)
+- DHT22 Temperature/Humidity Sensor (GPIO 2)
+- Passive Buzzer (GPIO 14)
 
 From **Lab 06:**
 - LED (GPIO 15)
-- Button (GPIO 14)
+- Button (GPIO 16)
 
 **New for Lab 09:**
 - No new hardware needed! We're combining previous setups.
+
+### Pin Connections
+
+Here's the complete wiring setup for this lab:
+
+| Component | Pin Connection | Notes |
+|-----------|---------------|-------|
+| DHT22 Sensor | GPIO 2 | Temperature/Humidity sensor |
+| LED | GPIO 15 | Visual indicator for alerts |
+| Button | GPIO 16 | Cycles through display modes |
+| Passive Buzzer | GPIO 14 | Audible alert |
+| Ground (GND) | Any GND pin | Common ground for all components |
+| 3.3V Power | 3V3(OUT) | Power for DHT22 sensor |
+
+### Pico Pinout Reference
+
+![Raspberry Pi Pico Pinout](pico-2-r4-pinout.svg)
+
+### Board Setup Photo
+
+![Lab 09 Board Setup](board_setup.jpg)
+
+*Your wiring should look similar to the setup shown above.*
 
 ### Testing Hardware
 
 Use test files in `tests/` folder to test your hardware:
 
 - `test_button_led.py` - Test button reading and LED control
-- `test_environment_read.py` - Test reading DHT22 and LDR
+- `test_buzzer.py` - Test buzzer alert sounds
+- `test_environment_read.py` - Test reading DHT22
 
 ## Git Workflow for This Lab
 
@@ -118,89 +142,85 @@ Once you have **two approvals**:
 
 ## Program Requirements
 
-### File 1: `src/environment_sensor.py`
+**You only need to complete TWO Python files!** The `main.py` file is provided for you.
 
-Create an `EnvironmentSensor` class that:
+### File 1: `src/environment_sensor.py` 🌡️
+
+Complete the `EnvironmentSensor` class that manages temperature/humidity sensor readings.
 
 **Attributes:**
 - `location` (string) - e.g., "LAB_A", "ROOM_101"
 - `temp_pin` (int) - GPIO pin for DHT22
-- `light_pin` (int) - GPIO pin for LDR
 - `reading_history` (list of dictionaries) - stores recent readings
 
-**Methods:**
-- `__init__(self, location, temp_pin, light_pin)` - Initialize sensor
+**Methods to Implement:**
+- `__init__(self, location, temp_pin)` - Initialize sensor
 - `read_temperature(self)` - Read temp/humidity from DHT22, return dictionary
-- `read_light(self)` - Read light level from LDR, return integer
-- `read_conditions(self)` - Read both sensors, return dictionary with all data
+- `read_conditions(self)` - Read temperature sensor, return dictionary with all data
 - `add_to_history(self, reading)` - Add reading to history list (keep last 10)
 - `get_average_temp(self)` - Calculate average temperature from history
 - `get_status_summary(self)` - Return string describing current conditions
-- `check_alerts(self)` - Return dictionary of alert conditions (temp > 28, light < 200)
+- `check_alerts(self)` - Return dictionary of alert conditions (temp > 28, humidity > 70)
 
-**Use:**
+**Programming Concepts Used:**
 - Variables: strings, integers, floats, booleans
 - List to store reading history
 - Dictionary to organize sensor data
 - If statements for alert checking
 - Loop to calculate averages
 
-### File 2: `src/dashboard_controller.py`
+### File 2: `src/dashboard_controller.py` 💡
 
-Create a `DashboardController` class that:
+Complete the `DashboardController` class that manages LED, button, and buzzer hardware.
 
 **Attributes:**
 - `led_pin` (int) - GPIO pin for LED
 - `button_pin` (int) - GPIO pin for button
-- `display_mode` (string) - "temperature", "light", "alerts", "history"
+- `buzzer_pin` (int) - GPIO pin for buzzer
+- `display_mode` (string) - "temperature", "alerts", "history"
 - `alert_active` (boolean) - whether alerts are currently triggered
 - `button_press_count` (int) - how many times button was pressed
 - `mode_history` (list) - track which modes were viewed
 
-**Methods:**
-- `__init__(self, led_pin, button_pin)` - Initialize LED and button
+**Methods to Implement:**
+- `__init__(self, led_pin, button_pin, buzzer_pin)` - Initialize LED, button, and buzzer
 - `set_led_state(self, is_on)` - Turn LED on/off based on boolean
 - `blink_led(self, times, delay)` - Blink LED specified number of times
 - `read_button(self)` - Check if button is pressed, return boolean
 - `cycle_display_mode(self)` - Change to next display mode when button pressed
-- `indicate_alert(self, alert_data)` - Blink LED if alerts exist
+- `sound_buzzer(self, duration)` - Sound buzzer for alert (duration in milliseconds)
+- `indicate_alert(self, alert_data)` - Blink LED and sound buzzer if alerts exist
 - `get_mode_stats(self)` - Return dictionary with button presses and mode usage
 - `reset_stats(self)` - Clear button press count and mode history
 
-**Use:**
+**Programming Concepts Used:**
 - Variables: strings, integers, booleans
 - List to track mode history
 - Dictionary to return statistics
 - If statements for mode switching
 - Loop for LED blinking
 
-### File 3: `src/main.py`
+### File 3: `src/main.py` ✅ (Provided - No Changes Needed!)
 
-Integrate both classes:
+The main program is **already complete** and provided for you! It:
 
-1. **Initialize** sensor and dashboard objects
-2. **Main loop** that:
+1. **Initializes** multiple sensor and dashboard objects
+2. **Runs a loop** that:
    - Reads button state
-   - If button pressed: cycle display mode
-   - Read environment conditions
-   - Check for alerts
-   - Display information based on current mode
-   - Indicate alerts with LED
-   - Add reading to history
-   - Wait 2 seconds
+   - Cycles display mode when button pressed
+   - Reads environment conditions from all sensors
+   - Checks for alerts
+   - Displays information based on current mode
+   - Indicates alerts with LED and buzzer
+   - Adds readings to history
+   - Waits 2 seconds
 
 3. **Display modes:**
-   - "temperature": Show temp and humidity
-   - "light": Show light level and brightness
-   - "alerts": Show any active alerts
-   - "history": Show average temp from last 10 readings
+   - "temperature": Shows temp and humidity
+   - "alerts": Shows any active alerts
+   - "history": Shows average temp from last 10 readings
 
-4. **Use:**
-   - Import both modules
-   - Create objects from both classes
-   - While loop for continuous monitoring
-   - If-elif-else for display mode selection
-   - Function calls to both classes
+**Your task:** Focus on implementing the two classes correctly so `main.py` works!
 
 ### File 4: `writing/reflection.md`
 
@@ -215,8 +235,8 @@ Answer reflection questions about:
 
 ### Technical Implementation (3 points)
 - **Automated GatorGrade checks:** All required classes and methods implemented correctly
-- **EnvironmentSensor class:** All 8 methods functional with proper dictionary/list usage
-- **DashboardController class:** All 8 methods functional with proper state management
+- **EnvironmentSensor class:** All 7 methods functional with proper dictionary/list usage
+- **DashboardController class:** All 9 methods functional with proper state management
 - **Main program integration:** Display modes work correctly, sensors read properly
 - **Code quality:** Clean code with docstrings, error handling, proper variable types
 - **Code Correctness:** Code runs as expected during code review

@@ -1,51 +1,85 @@
 """
-Environment Sensor Module - STARTER
-
-Your task: Complete the EnvironmentSensor class methods.
+Environment Sensor Module
+TODO: Complete this class to manage environmental sensor readings from DHT22.
 """
-from machine import Pin, ADC
+from machine import Pin
 import dht
 import time
 
 
 class EnvironmentSensor:
-    """Manages environmental sensor readings from DHT22 and LDR."""
+    """Tracks temperature and humidity with alert detection."""
     
-    def __init__(self, location, temp_pin, light_pin):
-        """Initialize with location name and sensor pins."""
-        # TODO: Store location, temp_pin, light_pin as instance variables
-        # TODO: Initialize reading_history as empty list
-        # TODO: Create DHT22 sensor object on temp_pin
-        # TODO: Create ADC object on light_pin for LDR
-        pass
+    def __init__(self, location, temp_pin):
+        """
+        TODO: Initialize sensor with location name and pin number.
+        - Set self.location to the location parameter
+        - Initialize self.reading_history as an empty list
+        - Create self.dht_sensor using dht.DHT22(Pin(temp_pin))
+        """
+        pass  # TODO: Replace with your code
     
-    # TODO: Add read_temperature(self) method
-    # Read from DHT22, return dict with temperature, humidity, success, error
+    def read_conditions(self):
+        """
+        TODO: Read all environmental conditions and return as dictionary.
+        - Use try/except to handle OSError from sensor
+        - Call self.dht_sensor.measure()
+        - Get temp = self.dht_sensor.temperature()
+        - Get humidity = self.dht_sensor.humidity()
+        - If OSError, set temp and humidity to 0.0
+        - Get current time using time.localtime()
+        - Format timestamp as "HH:MM:SS"
+        - Return dictionary with keys: 'location', 'temperature', 'humidity', 'timestamp'
+        """
+        pass  # TODO: Replace with your code
     
-    # TODO: Add read_light(self) method
-    # Read ADC value from LDR, convert to 0-1000 scale, return int
+    def add_to_history(self, reading):
+        """
+        TODO: Add reading to history, keeping only last 10 readings.
+        - Append reading to self.reading_history
+        - If length > 10, keep only last 10 using slice [-10:]
+        """
+        pass  # TODO: Replace with your code
     
-    # TODO: Add read_conditions(self) method
-    # Read all sensors, create timestamp, return dict with all data
+    def get_average_temp(self):
+        """
+        TODO: Calculate average temperature from reading history.
+        - If reading_history is empty, return 0.0
+        - Initialize total = 0
+        - Loop through each reading in self.reading_history
+        - Add reading['temperature'] to total
+        - Return total / len(self.reading_history)
+        """
+        pass  # TODO: Replace with your code
     
-    # TODO: Add add_to_history(self, reading) method
-    # Append reading to history, keep only last 10 readings
+    def get_status_summary(self):
+        """
+        TODO: Generate human-readable summary of current conditions.
+        - Call self.read_conditions() and store in variable c
+        - Categorize temperature: <18="Cold", <=26="Comfortable", else="Warm"
+        - Categorize humidity: <30="Dry", <=60="Comfortable", else="Humid"
+        - Return formatted string with location, temp (C), humidity (%), and time
+        """
+        pass  # TODO: Replace with your code
     
-    # TODO: Add get_average_temp(self) method
-    # Calculate and return average temperature from history
-    
-    # TODO: Add get_status_summary(self) method
-    # Read conditions, categorize temp/humidity/light, return formatted string
-    
-    # TODO: Add check_alerts(self) method
-    # Check for alert conditions, return dict with alert flags
+    def check_alerts(self):
+        """
+        TODO: Check for environmental alert conditions.
+        - Call self.read_conditions() and store in variable c
+        - Set high_temp = True if temperature > 28, else False
+        - Set low_temp = True if temperature < 16, else False
+        - Set high_humidity = True if humidity > 70, else False
+        - Return dictionary with keys: 'high_temp', 'low_temp', 'high_humidity', 'any_alerts'
+        - 'any_alerts' should be True if ANY of the three alerts are True
+        """
+        pass  # TODO: Replace with your code
 
 
 if __name__ == "__main__":
-    # Test environment sensor
-    sensor = EnvironmentSensor("TEST_LAB", 22, 26)
+    # Test your implementation
+    sensor = EnvironmentSensor("TEST_LAB", 2)
     conditions = sensor.read_conditions()
-    print(f"Temp: {conditions['temperature']}°C")
+    print(f"Temp: {conditions['temperature']}C")
     print(sensor.get_status_summary())
     
     # Test alerts

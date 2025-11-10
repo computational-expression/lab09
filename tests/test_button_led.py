@@ -5,7 +5,7 @@ Tests the button input and LED output functionality for the dashboard controller
 
 Hardware Required:
 - LED on GPIO 15
-- Button on GPIO 14 (with pull-up resistor)
+- Button on GPIO 16 (with pull-up resistor)
 
 Author: TODO: Your name
 Date: TODO: Date
@@ -27,7 +27,7 @@ def test_led():
         led.value(0)  # Off
         time.sleep(0.3)
     
-    print(" LED test complete!")
+    print("[OK] LED test complete!")
 
 
 def test_button():
@@ -35,7 +35,7 @@ def test_button():
     print("\n=== Testing Button ===")
     print("Press the button 5 times (you have 10 seconds)...")
     
-    button = Pin(14, Pin.IN, Pin.PULL_UP)
+    button = Pin(16, Pin.IN, Pin.PULL_UP)
     led = Pin(15, Pin.OUT)
     
     press_count = 0
@@ -59,9 +59,9 @@ def test_button():
     led.value(0)  # Ensure LED is off
     
     if press_count == 5:
-        print(" Button test complete!")
+        print("[OK] Button test complete!")
     else:
-        print(f"!  Only detected {press_count}/5 presses in time limit")
+        print(f"[!] Only detected {press_count}/5 presses in time limit")
 
 
 def test_button_led_together():
@@ -69,7 +69,7 @@ def test_button_led_together():
     print("\n=== Testing Button + LED Together ===")
     print("Hold button to turn on LED (10 second test)...")
     
-    button = Pin(14, Pin.IN, Pin.PULL_UP)
+    button = Pin(16, Pin.IN, Pin.PULL_UP)
     led = Pin(15, Pin.OUT)
     
     start_time = time.time()
@@ -81,7 +81,7 @@ def test_button_led_together():
         time.sleep(0.05)
     
     led.value(0)
-    print(" Button + LED test complete!")
+    print("[OK] Button + LED test complete!")
 
 
 if __name__ == "__main__":
@@ -103,6 +103,6 @@ if __name__ == "__main__":
         print("=" * 50)
         
     except KeyboardInterrupt:
-        print("\n\n!  Tests interrupted by user")
+        print("\n\n[!] Tests interrupted by user")
         led = Pin(15, Pin.OUT)
         led.value(0)
