@@ -46,7 +46,7 @@ thresholds:
           rationale: "Using industry-standard tools (py_compile) to verify code quality"
 
 # Run test suites
-- description: EnvironmentSensor tests pass
+- description: All EnvironmentSensor methods pass automated tests (6 tests covering sensor reading, history, alerts, and summaries)
   check: ExecuteCommand
   options:
     command: "python3 testing/test_environment_sensor.py"
@@ -60,7 +60,7 @@ thresholds:
         - DS: "I"
           rationale: "Analyzing and verifying correct implementation through automated tests"
 
-- description: DashboardController tests pass
+- description: All DashboardController methods pass automated tests (11 tests covering LED, button, buzzer, modes, and statistics)
   check: ExecuteCommand
   options:
     command: "python3 testing/test_dashboard_controller.py"
