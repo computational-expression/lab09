@@ -67,7 +67,7 @@ class DashboardController:
 if __name__ == "__main__":
     # Test your implementation
     controller = DashboardController(15, 16, 14)
-    print(f"Current mode: {controller.get_current_mode()}")
+    print("Current mode: " + controller.get_current_mode())
     controller.cycle_display_mode()
-    print(f"After cycling: {controller.get_current_mode()}")
+    print("After cycling: " + controller.get_current_mode())
 
