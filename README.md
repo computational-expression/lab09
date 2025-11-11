@@ -21,6 +21,7 @@
   - [File 4: reflection.md](#file-4-writingreflectionmd)
 - [Assessment Criteria](#assessment-criteria)
 - [Resources](#resources)
+- [Sample Output](#sample-output)
 
 ## Overview
 
@@ -308,3 +309,103 @@ Answer reflection questions about:
 - [Code Review Checklist](../materials/code_review.md)
 - Lab 08 sensor code (temperature and light reading)
 - Lab 06 LED and button code
+
+## Sample Output
+
+Here is an example of what your program output should look like when running on the Pico:
+
+```
+============================================================
+  MULTI-LOCATION ENVIRONMENTAL MONITORING DASHBOARD
+============================================================
+
+Initializing hardware...
+[OK] Initialized 3 sensor objects!
+  Each sensor maintains its own location and history.
+
+============================================================
+HOW TO USE:
+  - Press BUTTON to cycle display modes
+  - Press Ctrl+C to quit
+============================================================
+
+Current Mode: TEMPERATURE
+Mode Order: TEMPERATURE -> ALERTS -> HISTORY -> (repeat)
+
+Starting in 3 seconds...
+------------------------------------------------------------
+
+[Reading #1] - 00:01:49
+=== TEMPERATURE MODE ===
+  LAB_A: 23.9C, 29.8%
+  LAB_B: 0.0C, 0.0%
+  OFFICE: 24.1C, 31.2%
+  [!] ALERT ACTIVE - LED blinking, buzzer sounding
+
+[Press button to change mode]
+
+[Reading #2] - 00:01:56
+=== TEMPERATURE MODE ===
+  LAB_A: 24.1C, 31.2%
+  LAB_B: 0.0C, 0.0%
+  OFFICE: 24.1C, 31.0%
+  [!] ALERT ACTIVE - LED blinking, buzzer sounding
+
+[Press button to change mode]
+
+************************************************************
+  BUTTON PRESSED - Switched to ALERTS mode
+************************************************************
+
+
+[Reading #3] - 00:02:03
+=== ALERTS MODE ===
+  [!] LAB_A: Cold
+  [!] LAB_B: Cold
+  [!] OFFICE: Cold
+  [!] ALERT ACTIVE - LED blinking, buzzer sounding
+
+[Press button to change mode]
+
+************************************************************
+  BUTTON PRESSED - Switched to HISTORY mode
+************************************************************
+
+
+[Reading #4] - 00:02:11
+=== HISTORY MODE ===
+  LAB_A: Avg 24.0C (4 readings)
+  LAB_B: Avg 6.0C (4 readings)
+  OFFICE: Avg 24.1C (4 readings)
+  [!] ALERT ACTIVE - LED blinking, buzzer sounding
+
+[Press button to change mode]
+
+************************************************************
+  BUTTON PRESSED - Switched to TEMPERATURE mode
+************************************************************
+
+
+[Reading #5] - 00:02:18
+=== TEMPERATURE MODE ===
+  LAB_A: 24.2C, 30.7%
+  LAB_B: 0.0C, 0.0%
+  OFFICE: 24.2C, 30.6%
+  [!] ALERT ACTIVE - LED blinking, buzzer sounding
+
+[Press button to change mode]
+
+============================================================
+  MONITORING STOPPED
+============================================================
+
+Final Summary (5 readings):
+  LAB_A: Avg 24.1 C, 5 stored readings
+  LAB_B: Avg 4.8 C, 5 stored readings
+  OFFICE: Avg 24.1 C, 5 stored readings
+
+Dashboard: 3 button presses
+Mode usage: {'alerts': 1, 'temperature': 1, 'history': 1}
+
+[OK] Hardware cleaned up. Goodbye!
+```

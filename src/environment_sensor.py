@@ -20,10 +20,6 @@ class EnvironmentSensor:
         # minutes = current_time[4]
         # seconds = current_time[5]
         # timestamp = str(hours) + ":" + str(minutes) + ":" + str(seconds)
-        
-    
-    def add_to_history(self, reading):
-        
     
     def add_to_history(self, reading):
         # TODO: Add a sensor reading dictionary to the reading_history list
