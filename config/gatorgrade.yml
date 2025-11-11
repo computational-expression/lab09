@@ -1,2041 +1,602 @@
-# GatorGrade Configuration for Lab 09 Solution with CLO/PLO Mappings# GatorGrade Configuration for Lab 09 Solution with CLO/PLO Mappings# GatorGrade Configuration for Lab 09 Solution
-
-
+# GatorGrade Configuration for Lab 09 with CLO/PLO Mappings
 
 setup: |
-
-  echo "🐊 No additional setup required for this lab"
-
-setup: |# Check Python syntax is valid
+  echo "No additional setup required for this lab"
 
 targets:
-
-  PLO1:  echo "🐊 No additional setup required for this lab"- description: Python syntax is valid in environment_sensor.py
-
-    - I: 80          # Expressed as a percentage
-
-  PLO2:  check: ExecuteCommand
-
-    - I: 80          # Expressed as a percentage
-
-  PLO4:targets:  options:
-
-    - I: 80          # Expressed as a percentage
-
-  PLO1:    command: "python3 -m py_compile src/environment_sensor.py"
+  PLO1:
+    - I: 80
+  PLO2:
+    - I: 80
+  PLO4:
+    - I: 80
 
 thresholds:
-
-  PLO1:    - I: 80          # Expressed as a percentage
-
-    - I: 10          # Expressed as a raw number of checks
-
-  PLO2:  PLO2:- description: Python syntax is valid in dashboard_controller.py
-
-    - I: 5           # Expressed as a raw number of checks
-
-  PLO4:    - I: 80          # Expressed as a percentage  check: ExecuteCommand
-
-    - I: 8           # Expressed as a raw number of checks
-
-  PLO4:  options:
+  PLO1:
+    - I: 10
+  PLO2:
+    - I: 5
+  PLO4:
+    - I: 8
 
 ---
 
-    - I: 80          # Expressed as a percentage    command: "python3 -m py_compile src/dashboard_controller.py"
-
 # Check Python syntax is valid
-
 - description: Python syntax is valid in environment_sensor.py
-
   check: ExecuteCommand
-
-  options:thresholds:- description: Python syntax is valid in main.py
-
+  options:
     command: "python3 -m py_compile src/environment_sensor.py"
-
-  objectives:  PLO1:  check: ExecuteCommand
-
+  objectives:
     CLO2:
-
-      degree:    - I: 10          # Expressed as a raw number of checks  options:
-
+      degree:
         - CS: "I"
-
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"  PLO2:    command: "python3 -m py_compile src/main.py"
-
+          rationale: "Using industry-standard tools (py_compile) to verify code quality"
         - SE: "I"
-
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"    - I: 5           # Expressed as a raw number of checks
-
-
-
-- description: Python syntax is valid in dashboard_controller.py  PLO4:# Check for class definitions
-
+          rationale: "Using industry-standard tools (py_compile) to verify code quality"
+- description: Python syntax is valid in dashboard_controller.py
   check: ExecuteCommand
-
-  options:    - I: 8           # Expressed as a raw number of checks- src/environment_sensor.py:
-
+  options:
     command: "python3 -m py_compile src/dashboard_controller.py"
-
-  objectives:    - description: EnvironmentSensor class is defined in environment_sensor.py
-
+  objectives:
     CLO2:
-
-      degree:---      check: MatchFileFragment
-
+      degree:
         - CS: "I"
-
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"      options:
-
+          rationale: "Using industry-standard tools (py_compile) to verify code quality"
         - SE: "I"
-
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"# Check Python syntax is valid        fragment: "class EnvironmentSensor"
-
-
-
-- description: Python syntax is valid in main.py- description: Python syntax is valid in environment_sensor.py        count: 1
-
+          rationale: "Using industry-standard tools (py_compile) to verify code quality"
+- description: Python syntax is valid in main.py
   check: ExecuteCommand
-
-  options:  check: ExecuteCommand        exact: false
-
+  options:
     command: "python3 -m py_compile src/main.py"
-
-  objectives:  options:
-
+  objectives:
     CLO2:
-
-      degree:    command: "python3 -m py_compile src/environment_sensor.py"- src/dashboard_controller.py:
-
+      degree:
         - CS: "I"
-
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"  objectives:    - description: DashboardController class is defined in dashboard_controller.py
-
+          rationale: "Using industry-standard tools (py_compile) to verify code quality"
         - SE: "I"
+          rationale: "Using industry-standard tools (py_compile) to verify code quality"
 
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"    CLO2:      check: MatchFileFragment
-
-
-
-# Check for class definitions      degree:      options:
-
+# Check for class definitions
 - src/environment_sensor.py:
-
-    - description: EnvironmentSensor class is defined in environment_sensor.py        - CS: "I"        fragment: "class DashboardController"
-
+    - description: EnvironmentSensor class is defined in environment_sensor.py
       check: MatchFileFragment
-
-      options:          rationale: "Using industry-standard tools (py_compile) to verify code quality"        count: 1
-
-        fragment: "class EnvironmentSensor"
-
-        count: 1        - SE: "I"        exact: false
-
-        exact: false
-
-      objectives:          rationale: "Using industry-standard tools (py_compile) to verify code quality"
-
-        CLO1:
-
-          degree:# Check for required methods in EnvironmentSensor
-
-            - CS: "I"
-
-              rationale: "Applying Python programming fundamentals (classes) to implement solutions"- description: Python syntax is valid in dashboard_controller.py- src/environment_sensor.py:
-
-            - SE: "I"
-
-              rationale: "Applying Python programming fundamentals (classes) to implement solutions"  check: ExecuteCommand    - description: Has __init__ method in environment_sensor.py
-
-            - DS: "I"
-
-              rationale: "Applying Python programming fundamentals (classes) to implement solutions"  options:      check: MatchFileFragment
-
-            - INFM: "I"
-
-              rationale: "Applying Python programming fundamentals (classes) to implement solutions"    command: "python3 -m py_compile src/dashboard_controller.py"      options:
-
-
-
-- src/dashboard_controller.py:  objectives:        fragment: "def __init__"
-
-    - description: DashboardController class is defined in dashboard_controller.py
-
-      check: MatchFileFragment    CLO2:        count: 1
-
       options:
-
-        fragment: "class DashboardController"      degree:        exact: false
-
+        fragment: "class EnvironmentSensor"
         count: 1
-
-        exact: false        - CS: "I"
-
+        exact: false
       objectives:
-
-        CLO1:          rationale: "Using industry-standard tools (py_compile) to verify code quality"- src/environment_sensor.py:
-
+        CLO1:
           degree:
-
-            - CS: "I"        - SE: "I"    - description: Has read_conditions method in environment_sensor.py
-
+            - CS: "I"
+              rationale: "Applying Python programming fundamentals (classes) to implement solutions"
+            - SE: "I"
+              rationale: "Applying Python programming fundamentals (classes) to implement solutions"
+            - DS: "I"
+              rationale: "Applying Python programming fundamentals (classes) to implement solutions"
+            - INFM: "I"
               rationale: "Applying Python programming fundamentals (classes) to implement solutions"
 
-            - SE: "I"          rationale: "Using industry-standard tools (py_compile) to verify code quality"      check: MatchFileFragment
-
+- src/dashboard_controller.py:
+    - description: DashboardController class is defined in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "class DashboardController"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
               rationale: "Applying Python programming fundamentals (classes) to implement solutions"
-
-            - DS: "I"      options:
-
+            - SE: "I"
               rationale: "Applying Python programming fundamentals (classes) to implement solutions"
-
-            - INFM: "I"- description: Python syntax is valid in main.py        fragment: "def read_conditions"
-
+            - DS: "I"
               rationale: "Applying Python programming fundamentals (classes) to implement solutions"
-
-  check: ExecuteCommand        count: 1
+            - INFM: "I"
+              rationale: "Applying Python programming fundamentals (classes) to implement solutions"
 
 # Check for required methods in EnvironmentSensor
-
-- src/environment_sensor.py:  options:        exact: false
-
+- src/environment_sensor.py:
     - description: Has __init__ method in environment_sensor.py
-
-      check: MatchFileFragment    command: "python3 -m py_compile src/main.py"
-
+      check: MatchFileFragment
       options:
-
-        fragment: "def __init__"  objectives:- src/environment_sensor.py:
-
-        count: 1
-
-        exact: false    CLO2:    - description: Has add_to_history method in environment_sensor.py
-
-      objectives:
-
-        CLO1:      degree:      check: MatchFileFragment
-
-          degree:
-
-            - CS: "I"        - CS: "I"      options:
-
-              rationale: "Using Python method definitions to create object-oriented solutions"
-
-            - SE: "I"          rationale: "Using industry-standard tools (py_compile) to verify code quality"        fragment: "def add_to_history"
-
-              rationale: "Using Python method definitions to create object-oriented solutions"
-
-            - DS: "I"        - SE: "I"        count: 1
-
-              rationale: "Using Python method definitions to create object-oriented solutions"
-
-            - INFM: "I"          rationale: "Using industry-standard tools (py_compile) to verify code quality"        exact: false
-
-              rationale: "Using Python method definitions to create object-oriented solutions"
-
-
-
-- src/environment_sensor.py:
-
-    - description: Has read_conditions method in environment_sensor.py# Check for class definitions- src/environment_sensor.py:
-
-      check: MatchFileFragment
-
-      options:- src/environment_sensor.py:    - description: Has get_average_temp method in environment_sensor.py
-
-        fragment: "def read_conditions"
-
-        count: 1    - description: EnvironmentSensor class is defined in environment_sensor.py      check: MatchFileFragment
-
-        exact: false
-
-      objectives:      check: MatchFileFragment      options:
-
-        CLO1:
-
-          degree:      options:        fragment: "def get_average_temp"
-
-            - CS: "I"
-
-              rationale: "Implementing methods that solve problems with hardware interaction"        fragment: "class EnvironmentSensor"        count: 1
-
-            - SE: "I"
-
-              rationale: "Implementing methods that solve problems with hardware interaction"        count: 1        exact: false
-
-            - DS: "I"
-
-              rationale: "Implementing methods that solve problems with hardware interaction"        exact: false
-
-            - INFM: "I"
-
-              rationale: "Implementing methods that solve problems with hardware interaction"      objectives:- src/environment_sensor.py:
-
-
-
-- src/environment_sensor.py:        CLO1:    - description: Has get_status_summary method in environment_sensor.py
-
-    - description: Has add_to_history method in environment_sensor.py
-
-      check: MatchFileFragment          degree:      check: MatchFileFragment
-
-      options:
-
-        fragment: "def add_to_history"            - CS: "I"      options:
-
-        count: 1
-
-        exact: false              rationale: "Applying Python programming fundamentals (classes) to implement solutions"        fragment: "def get_status_summary"
-
-      objectives:
-
-        CLO1:            - SE: "I"        count: 1
-
-          degree:
-
-            - CS: "I"              rationale: "Applying Python programming fundamentals (classes) to implement solutions"        exact: false
-
-              rationale: "Using data structures (lists) to manage historical data"
-
-            - SE: "I"            - DS: "I"
-
-              rationale: "Using data structures (lists) to manage historical data"
-
-            - DS: "I"              rationale: "Applying Python programming fundamentals (classes) to implement solutions"- src/environment_sensor.py:
-
-              rationale: "Using data structures (lists) to manage historical data"
-
-            - INFM: "I"            - INFM: "I"    - description: Has check_alerts method in environment_sensor.py
-
-              rationale: "Using data structures (lists) to manage historical data"
-
-              rationale: "Applying Python programming fundamentals (classes) to implement solutions"      check: MatchFileFragment
-
-- src/environment_sensor.py:
-
-    - description: Has get_average_temp method in environment_sensor.py      options:
-
-      check: MatchFileFragment
-
-      options:- src/dashboard_controller.py:        fragment: "def check_alerts"
-
-        fragment: "def get_average_temp"
-
-        count: 1    - description: DashboardController class is defined in dashboard_controller.py        count: 1
-
-        exact: false
-
-      objectives:      check: MatchFileFragment        exact: false
-
-        CLO1:
-
-          degree:      options:
-
-            - CS: "I"
-
-              rationale: "Implementing computational solutions for data analysis"        fragment: "class DashboardController"# Check for required methods in DashboardController
-
-            - SE: "I"
-
-              rationale: "Implementing computational solutions for data analysis"        count: 1- src/dashboard_controller.py:
-
-            - DS: "I"
-
-              rationale: "Implementing computational solutions for data analysis"        exact: false    - description: Has __init__ method in dashboard_controller.py
-
-            - INFM: "I"
-
-              rationale: "Implementing computational solutions for data analysis"      objectives:      check: MatchFileFragment
-
-
-
-- src/environment_sensor.py:        CLO1:      options:
-
-    - description: Has get_status_summary method in environment_sensor.py
-
-      check: MatchFileFragment          degree:        fragment: "def __init__"
-
-      options:
-
-        fragment: "def get_status_summary"            - CS: "I"        count: 1
-
-        count: 1
-
-        exact: false              rationale: "Applying Python programming fundamentals (classes) to implement solutions"        exact: false
-
-      objectives:
-
-        CLO1:            - SE: "I"
-
-          degree:
-
-            - CS: "I"              rationale: "Applying Python programming fundamentals (classes) to implement solutions"- src/dashboard_controller.py:
-
-              rationale: "Creating methods that process and present data"
-
-            - SE: "I"            - DS: "I"    - description: Has set_led_state method in dashboard_controller.py
-
-              rationale: "Creating methods that process and present data"
-
-            - DS: "I"              rationale: "Applying Python programming fundamentals (classes) to implement solutions"      check: MatchFileFragment
-
-              rationale: "Creating methods that process and present data"
-
-            - INFM: "I"            - INFM: "I"      options:
-
-              rationale: "Creating methods that process and present data"
-
-              rationale: "Applying Python programming fundamentals (classes) to implement solutions"        fragment: "def set_led_state"
-
-- src/environment_sensor.py:
-
-    - description: Has check_alerts method in environment_sensor.py        count: 1
-
-      check: MatchFileFragment
-
-      options:# Check for required methods in EnvironmentSensor        exact: false
-
-        fragment: "def check_alerts"
-
-        count: 1- src/environment_sensor.py:
-
-        exact: false
-
-      objectives:    - description: Has __init__ method in environment_sensor.py- src/dashboard_controller.py:
-
-        CLO1:
-
-          degree:      check: MatchFileFragment    - description: Has blink_led method in dashboard_controller.py
-
-            - CS: "I"
-
-              rationale: "Using conditional logic to implement alert detection"      options:      check: MatchFileFragment
-
-            - SE: "I"
-
-              rationale: "Using conditional logic to implement alert detection"        fragment: "def __init__"      options:
-
-            - DS: "I"
-
-              rationale: "Using conditional logic to implement alert detection"        count: 1        fragment: "def blink_led"
-
-            - INFM: "I"
-
-              rationale: "Using conditional logic to implement alert detection"        exact: false        count: 1
-
-
-
-# Check for required methods in DashboardController      objectives:        exact: false
-
-- src/dashboard_controller.py:
-
-    - description: Has __init__ method in dashboard_controller.py        CLO1:
-
-      check: MatchFileFragment
-
-      options:          degree:- src/dashboard_controller.py:
-
         fragment: "def __init__"
-
-        count: 1            - CS: "I"    - description: Has read_button method in dashboard_controller.py
-
+        count: 1
         exact: false
-
-      objectives:              rationale: "Using Python method definitions to create object-oriented solutions"      check: MatchFileFragment
-
+      objectives:
         CLO1:
-
-          degree:            - SE: "I"      options:
-
+          degree:
             - CS: "I"
-
-              rationale: "Using Python method definitions to create object-oriented solutions"              rationale: "Using Python method definitions to create object-oriented solutions"        fragment: "def read_button"
-
+              rationale: "Using Python method definitions to create object-oriented solutions"
             - SE: "I"
-
-              rationale: "Using Python method definitions to create object-oriented solutions"            - DS: "I"        count: 1
-
+              rationale: "Using Python method definitions to create object-oriented solutions"
             - DS: "I"
-
-              rationale: "Using Python method definitions to create object-oriented solutions"              rationale: "Using Python method definitions to create object-oriented solutions"        exact: false
-
+              rationale: "Using Python method definitions to create object-oriented solutions"
             - INFM: "I"
+              rationale: "Using Python method definitions to create object-oriented solutions"
 
-              rationale: "Using Python method definitions to create object-oriented solutions"            - INFM: "I"
+- src/environment_sensor.py:
+    - description: Has read_conditions method in environment_sensor.py
+      check: MatchFileFragment
+      options:
+        fragment: "def read_conditions"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Implementing methods that solve problems with hardware interaction"
+            - SE: "I"
+              rationale: "Implementing methods that solve problems with hardware interaction"
+            - DS: "I"
+              rationale: "Implementing methods that solve problems with hardware interaction"
+            - INFM: "I"
+              rationale: "Implementing methods that solve problems with hardware interaction"
 
+- src/environment_sensor.py:
+    - description: Has add_to_history method in environment_sensor.py
+      check: MatchFileFragment
+      options:
+        fragment: "def add_to_history"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Using data structures (lists) to manage historical data"
+            - SE: "I"
+              rationale: "Using data structures (lists) to manage historical data"
+            - DS: "I"
+              rationale: "Using data structures (lists) to manage historical data"
+            - INFM: "I"
+              rationale: "Using data structures (lists) to manage historical data"
 
+- src/environment_sensor.py:
+    - description: Has get_average_temp method in environment_sensor.py
+      check: MatchFileFragment
+      options:
+        fragment: "def get_average_temp"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Implementing computational solutions for data analysis"
+            - SE: "I"
+              rationale: "Implementing computational solutions for data analysis"
+            - DS: "I"
+              rationale: "Implementing computational solutions for data analysis"
+            - INFM: "I"
+              rationale: "Implementing computational solutions for data analysis"
 
-- src/dashboard_controller.py:              rationale: "Using Python method definitions to create object-oriented solutions"- src/dashboard_controller.py:
+- src/environment_sensor.py:
+    - description: Has get_status_summary method in environment_sensor.py
+      check: MatchFileFragment
+      options:
+        fragment: "def get_status_summary"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Creating methods that process and present data"
+            - SE: "I"
+              rationale: "Creating methods that process and present data"
+            - DS: "I"
+              rationale: "Creating methods that process and present data"
+            - INFM: "I"
+              rationale: "Creating methods that process and present data"
 
+- src/environment_sensor.py:
+    - description: Has check_alerts method in environment_sensor.py
+      check: MatchFileFragment
+      options:
+        fragment: "def check_alerts"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Using conditional logic to implement alert detection"
+            - SE: "I"
+              rationale: "Using conditional logic to implement alert detection"
+            - DS: "I"
+              rationale: "Using conditional logic to implement alert detection"
+            - INFM: "I"
+              rationale: "Using conditional logic to implement alert detection"
+
+# Check for required methods in DashboardController
+- src/dashboard_controller.py:
+    - description: Has __init__ method in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "def __init__"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Using Python method definitions to create object-oriented solutions"
+            - SE: "I"
+              rationale: "Using Python method definitions to create object-oriented solutions"
+            - DS: "I"
+              rationale: "Using Python method definitions to create object-oriented solutions"
+            - INFM: "I"
+              rationale: "Using Python method definitions to create object-oriented solutions"
+
+- src/dashboard_controller.py:
     - description: Has set_led_state method in dashboard_controller.py
-
-      check: MatchFileFragment    - description: Has cycle_display_mode method in dashboard_controller.py
-
+      check: MatchFileFragment
       options:
-
-        fragment: "def set_led_state"- src/environment_sensor.py:      check: MatchFileFragment
-
+        fragment: "def set_led_state"
         count: 1
-
-        exact: false    - description: Has read_conditions method in environment_sensor.py      options:
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment        fragment: "def cycle_display_mode"
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:        count: 1
-
+            - CS: "I"
               rationale: "Implementing hardware control through Python code"
-
-            - SE: "I"        fragment: "def read_conditions"        exact: false
-
+            - SE: "I"
               rationale: "Implementing hardware control through Python code"
-
-            - DS: "I"        count: 1
-
+            - DS: "I"
               rationale: "Implementing hardware control through Python code"
-
-            - INFM: "I"        exact: false- src/dashboard_controller.py:
-
+            - INFM: "I"
               rationale: "Implementing hardware control through Python code"
-
-      objectives:    - description: Has sound_buzzer method in dashboard_controller.py
 
 - src/dashboard_controller.py:
-
-    - description: Has blink_led method in dashboard_controller.py        CLO1:      check: MatchFileFragment
-
+    - description: Has blink_led method in dashboard_controller.py
       check: MatchFileFragment
-
-      options:          degree:      options:
-
+      options:
         fragment: "def blink_led"
-
-        count: 1            - CS: "I"        fragment: "def sound_buzzer"
-
+        count: 1
         exact: false
-
-      objectives:              rationale: "Implementing methods that solve problems with hardware interaction"        count: 1
-
+      objectives:
         CLO1:
-
-          degree:            - SE: "I"        exact: false
-
+          degree:
             - CS: "I"
-
-              rationale: "Using loops and timing to control hardware behavior"              rationale: "Implementing methods that solve problems with hardware interaction"
-
+              rationale: "Using loops and timing to control hardware behavior"
             - SE: "I"
-
-              rationale: "Using loops and timing to control hardware behavior"            - DS: "I"- src/dashboard_controller.py:
-
+              rationale: "Using loops and timing to control hardware behavior"
             - DS: "I"
-
-              rationale: "Using loops and timing to control hardware behavior"              rationale: "Implementing methods that solve problems with hardware interaction"    - description: Has indicate_alert method in dashboard_controller.py
-
+              rationale: "Using loops and timing to control hardware behavior"
             - INFM: "I"
+              rationale: "Using loops and timing to control hardware behavior"
 
-              rationale: "Using loops and timing to control hardware behavior"            - INFM: "I"      check: MatchFileFragment
-
-
-
-- src/dashboard_controller.py:              rationale: "Implementing methods that solve problems with hardware interaction"      options:
-
+- src/dashboard_controller.py:
     - description: Has read_button method in dashboard_controller.py
-
-      check: MatchFileFragment        fragment: "def indicate_alert"
-
+      check: MatchFileFragment
       options:
-
-        fragment: "def read_button"- src/environment_sensor.py:        count: 1
-
+        fragment: "def read_button"
         count: 1
-
-        exact: false    - description: Has add_to_history method in environment_sensor.py        exact: false
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:- src/dashboard_controller.py:
-
+            - CS: "I"
               rationale: "Reading hardware input through Python code"
-
-            - SE: "I"        fragment: "def add_to_history"    - description: Has get_mode_stats method in dashboard_controller.py
-
+            - SE: "I"
               rationale: "Reading hardware input through Python code"
-
-            - DS: "I"        count: 1      check: MatchFileFragment
-
+            - DS: "I"
               rationale: "Reading hardware input through Python code"
-
-            - INFM: "I"        exact: false      options:
-
+            - INFM: "I"
               rationale: "Reading hardware input through Python code"
-
-      objectives:        fragment: "def get_mode_stats"
 
 - src/dashboard_controller.py:
-
-    - description: Has cycle_display_mode method in dashboard_controller.py        CLO1:        count: 1
-
+    - description: Has cycle_display_mode method in dashboard_controller.py
       check: MatchFileFragment
-
-      options:          degree:        exact: false
-
+      options:
         fragment: "def cycle_display_mode"
-
-        count: 1            - CS: "I"
-
+        count: 1
         exact: false
-
-      objectives:              rationale: "Using data structures (lists) to manage historical data"- src/dashboard_controller.py:
-
+      objectives:
         CLO1:
-
-          degree:            - SE: "I"    - description: Has reset_stats method in dashboard_controller.py
-
+          degree:
             - CS: "I"
-
-              rationale: "Implementing state management with conditional logic"              rationale: "Using data structures (lists) to manage historical data"      check: MatchFileFragment
-
+              rationale: "Implementing state management with conditional logic"
             - SE: "I"
-
-              rationale: "Implementing state management with conditional logic"            - DS: "I"      options:
-
+              rationale: "Implementing state management with conditional logic"
             - DS: "I"
-
-              rationale: "Implementing state management with conditional logic"              rationale: "Using data structures (lists) to manage historical data"        fragment: "def reset_stats"
-
+              rationale: "Implementing state management with conditional logic"
             - INFM: "I"
+              rationale: "Implementing state management with conditional logic"
 
-              rationale: "Implementing state management with conditional logic"            - INFM: "I"        count: 1
-
-
-
-- src/dashboard_controller.py:              rationale: "Using data structures (lists) to manage historical data"        exact: false
-
+- src/dashboard_controller.py:
     - description: Has sound_buzzer method in dashboard_controller.py
-
       check: MatchFileFragment
-
       options:
-
-        fragment: "def sound_buzzer"- src/environment_sensor.py:- src/dashboard_controller.py:
-
+        fragment: "def sound_buzzer"
         count: 1
-
-        exact: false    - description: Has get_average_temp method in environment_sensor.py    - description: Has get_mode_display_title method in dashboard_controller.py
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment      check: MatchFileFragment
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:      options:
-
+            - CS: "I"
               rationale: "Controlling hardware (buzzer) using PWM in Python"
-
-            - SE: "I"        fragment: "def get_average_temp"        fragment: "def get_mode_display_title"
-
+            - SE: "I"
               rationale: "Controlling hardware (buzzer) using PWM in Python"
-
-            - DS: "I"        count: 1        count: 1
-
+            - DS: "I"
               rationale: "Controlling hardware (buzzer) using PWM in Python"
-
-            - INFM: "I"        exact: false        exact: false
-
+            - INFM: "I"
               rationale: "Controlling hardware (buzzer) using PWM in Python"
-
-      objectives:
 
 - src/dashboard_controller.py:
-
-    - description: Has indicate_alert method in dashboard_controller.py        CLO1:# Check for proper usage in EnvironmentSensor
-
+    - description: Has indicate_alert method in dashboard_controller.py
       check: MatchFileFragment
-
-      options:          degree:- src/environment_sensor.py:
-
+      options:
         fragment: "def indicate_alert"
-
-        count: 1            - CS: "I"    - description: Uses self.reading_history list in environment_sensor.py
-
-        exact: false
-
-      objectives:              rationale: "Implementing computational solutions for data analysis"      check: MatchFileFragment
-
-        CLO1:
-
-          degree:            - SE: "I"      options:
-
-            - CS: "I"
-
-              rationale: "Integrating multiple hardware components in a single method"              rationale: "Implementing computational solutions for data analysis"        fragment: "self.reading_history"
-
-            - SE: "I"
-
-              rationale: "Integrating multiple hardware components in a single method"            - DS: "I"        count: 3
-
-            - DS: "I"
-
-              rationale: "Integrating multiple hardware components in a single method"              rationale: "Implementing computational solutions for data analysis"        exact: false
-
-            - INFM: "I"
-
-              rationale: "Integrating multiple hardware components in a single method"            - INFM: "I"
-
-
-
-- src/dashboard_controller.py:              rationale: "Implementing computational solutions for data analysis"- src/environment_sensor.py:
-
-    - description: Has get_mode_stats method in dashboard_controller.py
-
-      check: MatchFileFragment    - description: Uses dictionary to return data in environment_sensor.py
-
-      options:
-
-        fragment: "def get_mode_stats"- src/environment_sensor.py:      check: MatchFileFragment
-
         count: 1
-
-        exact: false    - description: Has get_status_summary method in environment_sensor.py      options:
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment        fragment: "return {"
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:        count: 2
-
-              rationale: "Creating methods that return structured data (dictionaries)"
-
-            - SE: "I"        fragment: "def get_status_summary"        exact: false
-
-              rationale: "Creating methods that return structured data (dictionaries)"
-
-            - DS: "I"        count: 1
-
-              rationale: "Creating methods that return structured data (dictionaries)"
-
-            - INFM: "I"        exact: false- src/environment_sensor.py:
-
-              rationale: "Creating methods that return structured data (dictionaries)"
-
-      objectives:    - description: Uses DHT22 sensor in environment_sensor.py
+            - CS: "I"
+              rationale: "Integrating multiple hardware components in a single method"
+            - SE: "I"
+              rationale: "Integrating multiple hardware components in a single method"
+            - DS: "I"
+              rationale: "Integrating multiple hardware components in a single method"
+            - INFM: "I"
+              rationale: "Integrating multiple hardware components in a single method"
 
 - src/dashboard_controller.py:
-
-    - description: Has reset_stats method in dashboard_controller.py        CLO1:      check: MatchFileFragment
-
+    - description: Has get_mode_stats method in dashboard_controller.py
       check: MatchFileFragment
-
-      options:          degree:      options:
-
-        fragment: "def reset_stats"
-
-        count: 1            - CS: "I"        fragment: "dht.DHT22"
-
-        exact: false
-
-      objectives:              rationale: "Creating methods that process and present data"        count: 1
-
-        CLO1:
-
-          degree:            - SE: "I"        exact: false
-
-            - CS: "I"
-
-              rationale: "Implementing state management and data reset functionality"              rationale: "Creating methods that process and present data"
-
-            - SE: "I"
-
-              rationale: "Implementing state management and data reset functionality"            - DS: "I"# Check for proper usage in DashboardController
-
-            - DS: "I"
-
-              rationale: "Implementing state management and data reset functionality"              rationale: "Creating methods that process and present data"- src/dashboard_controller.py:
-
-            - INFM: "I"
-
-              rationale: "Implementing state management and data reset functionality"            - INFM: "I"    - description: Uses self.display_mode attribute in dashboard_controller.py
-
-
-
-- src/dashboard_controller.py:              rationale: "Creating methods that process and present data"      check: MatchFileFragment
-
-    - description: Has get_mode_display_title method in dashboard_controller.py
-
-      check: MatchFileFragment      options:
-
       options:
-
-        fragment: "def get_mode_display_title"- src/environment_sensor.py:        fragment: "self.display_mode"
-
+        fragment: "def get_mode_stats"
         count: 1
-
-        exact: false    - description: Has check_alerts method in environment_sensor.py        count: 3
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment        exact: false
-
+        CLO1:
           degree:
+            - CS: "I"
+              rationale: "Creating methods that return structured data (dictionaries)"
+            - SE: "I"
+              rationale: "Creating methods that return structured data (dictionaries)"
+            - DS: "I"
+              rationale: "Creating methods that return structured data (dictionaries)"
+            - INFM: "I"
+              rationale: "Creating methods that return structured data (dictionaries)"
 
-            - CS: "I"      options:
+- src/dashboard_controller.py:
+    - description: Has reset_stats method in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "def reset_stats"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Implementing state management and data reset functionality"
+            - SE: "I"
+              rationale: "Implementing state management and data reset functionality"
+            - DS: "I"
+              rationale: "Implementing state management and data reset functionality"
+            - INFM: "I"
+              rationale: "Implementing state management and data reset functionality"
 
+- src/dashboard_controller.py:
+    - description: Has get_mode_display_title method in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "def get_mode_display_title"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
               rationale: "Using conditional logic to generate appropriate output"
-
-            - SE: "I"        fragment: "def check_alerts"- src/dashboard_controller.py:
-
+            - SE: "I"
               rationale: "Using conditional logic to generate appropriate output"
-
-            - DS: "I"        count: 1    - description: Uses self.button_press_count attribute in dashboard_controller.py
-
+            - DS: "I"
               rationale: "Using conditional logic to generate appropriate output"
-
-            - INFM: "I"        exact: false      check: MatchFileFragment
-
+            - INFM: "I"
               rationale: "Using conditional logic to generate appropriate output"
-
-      objectives:      options:
 
 # Check for proper usage in EnvironmentSensor
-
-- src/environment_sensor.py:        CLO1:        fragment: "self.button_press_count"
-
-    - description: Uses self.reading_history list in environment_sensor.py
-
-      check: MatchFileFragment          degree:        count: 2
-
+- src/environment_sensor.py:
+    - description: Uses reading_history in environment_sensor.py
+      check: MatchFileFragment
       options:
-
-        fragment: "self.reading_history"            - CS: "I"        exact: false
-
+        fragment: "self.reading_history"
         count: 3
-
-        exact: false              rationale: "Using conditional logic to implement alert detection"
-
+        exact: false
       objectives:
-
-        CLO1:            - SE: "I"- src/dashboard_controller.py:
-
+        CLO1:
           degree:
-
-            - CS: "I"              rationale: "Using conditional logic to implement alert detection"    - description: Uses self.mode_history list in dashboard_controller.py
-
+            - CS: "I"
               rationale: "Using lists as a data structure to store historical readings"
-
-            - SE: "I"            - DS: "I"      check: MatchFileFragment
-
+            - SE: "I"
               rationale: "Using lists as a data structure to store historical readings"
-
-            - DS: "I"              rationale: "Using conditional logic to implement alert detection"      options:
-
+            - DS: "I"
               rationale: "Using lists as a data structure to store historical readings"
-
-            - INFM: "I"            - INFM: "I"        fragment: "self.mode_history"
-
+            - INFM: "I"
               rationale: "Using lists as a data structure to store historical readings"
-
-              rationale: "Using conditional logic to implement alert detection"        count: 2
 
 - src/environment_sensor.py:
-
-    - description: Uses dictionary to return data in environment_sensor.py        exact: false
-
+    - description: Uses { in environment_sensor.py
       check: MatchFileFragment
-
-      options:# Check for required methods in DashboardController
-
-        fragment: "return {"
-
-        count: 2- src/dashboard_controller.py:- src/dashboard_controller.py:
-
-        exact: false
-
-      objectives:    - description: Has __init__ method in dashboard_controller.py    - description: Uses .on() method for LED in dashboard_controller.py
-
-        CLO1:
-
-          degree:      check: MatchFileFragment      check: MatchFileFragment
-
-            - CS: "I"
-
-              rationale: "Using dictionaries to organize and return structured data"      options:      options:
-
-            - SE: "I"
-
-              rationale: "Using dictionaries to organize and return structured data"        fragment: "def __init__"        fragment: ".on()"
-
-            - DS: "I"
-
-              rationale: "Using dictionaries to organize and return structured data"        count: 1        count: 2
-
-            - INFM: "I"
-
-              rationale: "Using dictionaries to organize and return structured data"        exact: false        exact: false
-
-
-
-- src/environment_sensor.py:      objectives:
-
-    - description: Uses DHT22 sensor in environment_sensor.py
-
-      check: MatchFileFragment        CLO1:- src/dashboard_controller.py:
-
       options:
-
-        fragment: "dht.DHT22"          degree:    - description: Uses .off() method for LED in dashboard_controller.py
-
-        count: 1
-
-        exact: false            - CS: "I"      check: MatchFileFragment
-
+        fragment: "return {"
+        count: 2
+        exact: false
       objectives:
-
-        CLO1:              rationale: "Using Python method definitions to create object-oriented solutions"      options:
-
+        CLO1:
           degree:
+            - CS: "I"
+              rationale: "Using dictionaries to organize and return structured data"
+            - SE: "I"
+              rationale: "Using dictionaries to organize and return structured data"
+            - DS: "I"
+              rationale: "Using dictionaries to organize and return structured data"
+            - INFM: "I"
+              rationale: "Using dictionaries to organize and return structured data"
 
-            - CS: "I"            - SE: "I"        fragment: ".off()"
-
+- src/environment_sensor.py:
+    - description: Uses DHT22 in environment_sensor.py
+      check: MatchFileFragment
+      options:
+        fragment: "dht.DHT22"
+        count: 1
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
               rationale: "Using external libraries to interact with hardware sensors"
-
-            - SE: "I"              rationale: "Using Python method definitions to create object-oriented solutions"        count: 2
-
+            - SE: "I"
               rationale: "Using external libraries to interact with hardware sensors"
-
-            - DS: "I"            - DS: "I"        exact: false
-
+            - DS: "I"
               rationale: "Using external libraries to interact with hardware sensors"
-
-            - INFM: "I"              rationale: "Using Python method definitions to create object-oriented solutions"
-
+            - INFM: "I"
               rationale: "Using external libraries to interact with hardware sensors"
-
-            - INFM: "I"- src/dashboard_controller.py:
 
 # Check for proper usage in DashboardController
-
-- src/dashboard_controller.py:              rationale: "Using Python method definitions to create object-oriented solutions"    - description: Uses for loop in dashboard_controller.py
-
-    - description: Uses self.display_mode attribute in dashboard_controller.py
-
-      check: MatchFileFragment      check: MatchFileFragment
-
+- src/dashboard_controller.py:
+    - description: Uses display_mode in dashboard_controller.py
+      check: MatchFileFragment
       options:
-
-        fragment: "self.display_mode"- src/dashboard_controller.py:      options:
-
+        fragment: "self.display_mode"
         count: 3
-
-        exact: false    - description: Has set_led_state method in dashboard_controller.py        fragment: "for "
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment        count: 2
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:        exact: false
-
+            - CS: "I"
               rationale: "Using instance variables to maintain object state"
-
-            - SE: "I"        fragment: "def set_led_state"
-
+            - SE: "I"
               rationale: "Using instance variables to maintain object state"
-
-            - DS: "I"        count: 1- src/dashboard_controller.py:
-
+            - DS: "I"
               rationale: "Using instance variables to maintain object state"
-
-            - INFM: "I"        exact: false    - description: Uses if statements in dashboard_controller.py
-
+            - INFM: "I"
               rationale: "Using instance variables to maintain object state"
-
-      objectives:      check: MatchFileFragment
 
 - src/dashboard_controller.py:
-
-    - description: Uses self.button_press_count attribute in dashboard_controller.py        CLO1:      options:
-
+    - description: Uses button_press_count in dashboard_controller.py
       check: MatchFileFragment
-
-      options:          degree:        fragment: "if "
-
+      options:
         fragment: "self.button_press_count"
-
-        count: 2            - CS: "I"        count: 5
-
-        exact: false
-
-      objectives:              rationale: "Implementing hardware control through Python code"        exact: false
-
-        CLO1:
-
-          degree:            - SE: "I"
-
-            - CS: "I"
-
-              rationale: "Using counters to track user interactions"              rationale: "Implementing hardware control through Python code"# Check for docstrings
-
-            - SE: "I"
-
-              rationale: "Using counters to track user interactions"            - DS: "I"- src/environment_sensor.py:
-
-            - DS: "I"
-
-              rationale: "Using counters to track user interactions"              rationale: "Implementing hardware control through Python code"    - description: Has module-level docstring in environment_sensor.py
-
-            - INFM: "I"
-
-              rationale: "Using counters to track user interactions"            - INFM: "I"      check: MatchFileFragment
-
-
-
-- src/dashboard_controller.py:              rationale: "Implementing hardware control through Python code"      options:
-
-    - description: Uses self.mode_history list in dashboard_controller.py
-
-      check: MatchFileFragment        fragment: '"""'
-
-      options:
-
-        fragment: "self.mode_history"- src/dashboard_controller.py:        count: 2
-
         count: 2
-
-        exact: false    - description: Has blink_led method in dashboard_controller.py        exact: false
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:- src/dashboard_controller.py:
-
-              rationale: "Using lists to maintain history of state changes"
-
-            - SE: "I"        fragment: "def blink_led"    - description: Has module-level docstring in dashboard_controller.py
-
-              rationale: "Using lists to maintain history of state changes"
-
-            - DS: "I"        count: 1      check: MatchFileFragment
-
-              rationale: "Using lists to maintain history of state changes"
-
-            - INFM: "I"        exact: false      options:
-
-              rationale: "Using lists to maintain history of state changes"
-
-      objectives:        fragment: '"""'
+            - CS: "I"
+              rationale: "Using counters to track user interactions"
+            - SE: "I"
+              rationale: "Using counters to track user interactions"
+            - DS: "I"
+              rationale: "Using counters to track user interactions"
+            - INFM: "I"
+              rationale: "Using counters to track user interactions"
 
 - src/dashboard_controller.py:
-
-    - description: Uses .on() method for LED in dashboard_controller.py        CLO1:        count: 2
-
+    - description: Uses mode_history in dashboard_controller.py
       check: MatchFileFragment
+      options:
+        fragment: "self.mode_history"
+        count: 2
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Using lists to maintain history of state changes"
+            - SE: "I"
+              rationale: "Using lists to maintain history of state changes"
+            - DS: "I"
+              rationale: "Using lists to maintain history of state changes"
+            - INFM: "I"
+              rationale: "Using lists to maintain history of state changes"
 
-      options:          degree:        exact: false
-
+- src/dashboard_controller.py:
+    - description: Uses .on method in dashboard_controller.py
+      check: MatchFileFragment
+      options:
         fragment: ".on()"
-
-        count: 2            - CS: "I"
-
-        exact: false
-
-      objectives:              rationale: "Using loops and timing to control hardware behavior"# Check for main function and multiple objects
-
-        CLO1:
-
-          degree:            - SE: "I"- src/main.py:
-
-            - CS: "I"
-
-              rationale: "Using hardware API methods to control LED"              rationale: "Using loops and timing to control hardware behavior"    - description: Has main function in main.py
-
-            - SE: "I"
-
-              rationale: "Using hardware API methods to control LED"            - DS: "I"      check: MatchFileFragment
-
-            - DS: "I"
-
-              rationale: "Using hardware API methods to control LED"              rationale: "Using loops and timing to control hardware behavior"      options:
-
-            - INFM: "I"
-
-              rationale: "Using hardware API methods to control LED"            - INFM: "I"        fragment: "def main"
-
-
-
-- src/dashboard_controller.py:              rationale: "Using loops and timing to control hardware behavior"        count: 1
-
-    - description: Uses .off() method for LED in dashboard_controller.py
-
-      check: MatchFileFragment        exact: false
-
-      options:
-
-        fragment: ".off()"- src/dashboard_controller.py:
-
         count: 2
-
-        exact: false    - description: Has read_button method in dashboard_controller.py- src/main.py:
-
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment    - description: Imports from environment_sensor in main.py
-
+        CLO1:
           degree:
-
-            - CS: "I"      options:      check: MatchFileFragment
-
+            - CS: "I"
               rationale: "Using hardware API methods to control LED"
-
-            - SE: "I"        fragment: "def read_button"      options:
-
+            - SE: "I"
               rationale: "Using hardware API methods to control LED"
-
-            - DS: "I"        count: 1        fragment: "from environment_sensor import"
-
+            - DS: "I"
               rationale: "Using hardware API methods to control LED"
-
-            - INFM: "I"        exact: false        count: 1
-
+            - INFM: "I"
               rationale: "Using hardware API methods to control LED"
-
-      objectives:        exact: false
 
 - src/dashboard_controller.py:
-
-    - description: Uses for loop in dashboard_controller.py        CLO1:
-
+    - description: Uses .off method in dashboard_controller.py
       check: MatchFileFragment
-
-      options:          degree:- src/main.py:
-
-        fragment: "for "
-
-        count: 2            - CS: "I"    - description: Imports from dashboard_controller in main.py
-
-        exact: false
-
-      objectives:              rationale: "Reading hardware input through Python code"      check: MatchFileFragment
-
-        CLO1:
-
-          degree:            - SE: "I"      options:
-
-            - CS: "I"
-
-              rationale: "Using loops for repetitive operations (LED blinking)"              rationale: "Reading hardware input through Python code"        fragment: "from dashboard_controller import"
-
-            - SE: "I"
-
-              rationale: "Using loops for repetitive operations (LED blinking)"            - DS: "I"        count: 1
-
-            - DS: "I"
-
-              rationale: "Using loops for repetitive operations (LED blinking)"              rationale: "Reading hardware input through Python code"        exact: false
-
-            - INFM: "I"
-
-              rationale: "Using loops for repetitive operations (LED blinking)"            - INFM: "I"
-
-
-
-- src/dashboard_controller.py:              rationale: "Reading hardware input through Python code"- src/main.py:
-
-    - description: Uses if statements in dashboard_controller.py
-
-      check: MatchFileFragment    - description: Creates multiple EnvironmentSensor objects in main.py (at least 3)
-
       options:
-
-        fragment: "if "- src/dashboard_controller.py:      check: MatchFileFragment
-
-        count: 5
-
-        exact: false    - description: Has cycle_display_mode method in dashboard_controller.py      options:
-
+        fragment: ".off()"
+        count: 2
+        exact: false
       objectives:
-
-        CLO1:      check: MatchFileFragment        fragment: "EnvironmentSensor("
-
+        CLO1:
           degree:
+            - CS: "I"
+              rationale: "Using hardware API methods to control LED"
+            - SE: "I"
+              rationale: "Using hardware API methods to control LED"
+            - DS: "I"
+              rationale: "Using hardware API methods to control LED"
+            - INFM: "I"
+              rationale: "Using hardware API methods to control LED"
 
-            - CS: "I"      options:        count: 3
+- src/dashboard_controller.py:
+    - description: Uses for loop in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "for "
+        count: 2
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
+              rationale: "Using loops for repetitive operations (LED blinking)"
+            - SE: "I"
+              rationale: "Using loops for repetitive operations (LED blinking)"
+            - DS: "I"
+              rationale: "Using loops for repetitive operations (LED blinking)"
+            - INFM: "I"
+              rationale: "Using loops for repetitive operations (LED blinking)"
 
+- src/dashboard_controller.py:
+    - description: Uses if statements in dashboard_controller.py
+      check: MatchFileFragment
+      options:
+        fragment: "if "
+        count: 5
+        exact: false
+      objectives:
+        CLO1:
+          degree:
+            - CS: "I"
               rationale: "Using conditional statements for decision-making logic"
-
-            - SE: "I"        fragment: "def cycle_display_mode"        exact: false
-
+            - SE: "I"
               rationale: "Using conditional statements for decision-making logic"
-
-            - DS: "I"        count: 1
-
+            - DS: "I"
               rationale: "Using conditional statements for decision-making logic"
-
-            - INFM: "I"        exact: false- src/main.py:
-
+            - INFM: "I"
               rationale: "Using conditional statements for decision-making logic"
-
-      objectives:    - description: Creates DashboardController object in main.py
 
 # Check for docstrings
-
-- src/environment_sensor.py:        CLO1:      check: MatchFileFragment
-
+- src/environment_sensor.py:
     - description: Has module-level docstring in environment_sensor.py
-
-      check: MatchFileFragment          degree:      options:
-
-      options:
-
-        fragment: '"""'            - CS: "I"        fragment: "DashboardController("
-
-        count: 2
-
-        exact: false              rationale: "Implementing state management with conditional logic"        count: 1
-
-      objectives:
-
-        CLO2:            - SE: "I"        exact: false
-
-          degree:
-
-            - CS: "I"              rationale: "Implementing state management with conditional logic"
-
-              rationale: "Following industry-standard documentation practices"
-
-            - SE: "I"            - DS: "I"- src/main.py:
-
-              rationale: "Following industry-standard documentation practices"
-
-        CLO5:              rationale: "Implementing state management with conditional logic"    - description: Uses sensors list in main.py
-
-          degree:
-
-            - CS: "I"            - INFM: "I"      check: MatchFileFragment
-
-              rationale: "Implementing projects with proper documentation standards"
-
-            - SE: "I"              rationale: "Implementing state management with conditional logic"      options:
-
-              rationale: "Implementing projects with proper documentation standards"
-
-            - DS: "I"        fragment: "sensors"
-
-              rationale: "Implementing projects with proper documentation standards"
-
-            - INFM: "I"- src/dashboard_controller.py:        count: 5
-
-              rationale: "Implementing projects with proper documentation standards"
-
-    - description: Has sound_buzzer method in dashboard_controller.py        exact: false
-
-- src/dashboard_controller.py:
-
-    - description: Has module-level docstring in dashboard_controller.py      check: MatchFileFragment
-
       check: MatchFileFragment
-
-      options:      options:# Check for control flow in main.py
-
-        fragment: '"""'
-
-        count: 2        fragment: "def sound_buzzer"- src/main.py:
-
-        exact: false
-
-      objectives:        count: 1    - description: Uses while loop in main.py
-
-        CLO2:
-
-          degree:        exact: false      check: MatchFileFragment
-
-            - CS: "I"
-
-              rationale: "Following industry-standard documentation practices"      objectives:      options:
-
-            - SE: "I"
-
-              rationale: "Following industry-standard documentation practices"        CLO1:        fragment: "while"
-
-        CLO5:
-
-          degree:          degree:        count: 1
-
-            - CS: "I"
-
-              rationale: "Implementing projects with proper documentation standards"            - CS: "I"        exact: false
-
-            - SE: "I"
-
-              rationale: "Implementing projects with proper documentation standards"              rationale: "Controlling hardware (buzzer) using PWM in Python"
-
-            - DS: "I"
-
-              rationale: "Implementing projects with proper documentation standards"            - SE: "I"- src/main.py:
-
-            - INFM: "I"
-
-              rationale: "Implementing projects with proper documentation standards"              rationale: "Controlling hardware (buzzer) using PWM in Python"    - description: Uses for loop to iterate through sensors in main.py
-
-
-
-# Check for main function and multiple objects            - DS: "I"      check: MatchFileFragment
-
-- src/main.py:
-
-    - description: Has main function in main.py              rationale: "Controlling hardware (buzzer) using PWM in Python"      options:
-
-      check: MatchFileFragment
-
-      options:            - INFM: "I"        fragment: "for sensor in sensors"
-
-        fragment: "def main"
-
-        count: 1              rationale: "Controlling hardware (buzzer) using PWM in Python"        count: 2
-
-        exact: false
-
-      objectives:        exact: false
-
-        CLO5:
-
-          degree:- src/dashboard_controller.py:
-
-            - CS: "I"
-
-              rationale: "Designing project with proper program structure"    - description: Has indicate_alert method in dashboard_controller.py- src/main.py:
-
-            - SE: "I"
-
-              rationale: "Designing project with proper program structure"      check: MatchFileFragment    - description: Uses elif for display modes in main.py
-
-            - DS: "I"
-
-              rationale: "Designing project with proper program structure"      options:      check: MatchFileFragment
-
-            - INFM: "I"
-
-              rationale: "Designing project with proper program structure"        fragment: "def indicate_alert"      options:
-
-
-
-- src/main.py:        count: 1        fragment: "elif"
-
-    - description: Imports from environment_sensor in main.py
-
-      check: MatchFileFragment        exact: false        count: 3
-
-      options:
-
-        fragment: "from environment_sensor import"      objectives:        exact: false
-
-        count: 1
-
-        exact: false        CLO1:
-
-      objectives:
-
-        CLO5:          degree:- src/main.py:
-
-          degree:
-
-            - CS: "I"            - CS: "I"    - description: Uses time.sleep in main.py
-
-              rationale: "Integrating multiple modules into a complete project"
-
-            - SE: "I"              rationale: "Integrating multiple hardware components in a single method"      check: MatchFileFragment
-
-              rationale: "Integrating multiple modules into a complete project"
-
-            - DS: "I"            - SE: "I"      options:
-
-              rationale: "Integrating multiple modules into a complete project"
-
-            - INFM: "I"              rationale: "Integrating multiple hardware components in a single method"        fragment: "time.sleep"
-
-              rationale: "Integrating multiple modules into a complete project"
-
-            - DS: "I"        count: 1
-
-- src/main.py:
-
-    - description: Imports from dashboard_controller in main.py              rationale: "Integrating multiple hardware components in a single method"        exact: false
-
-      check: MatchFileFragment
-
-      options:            - INFM: "I"
-
-        fragment: "from dashboard_controller import"
-
-        count: 1              rationale: "Integrating multiple hardware components in a single method"- src/main.py:
-
-        exact: false
-
-      objectives:    - description: Uses try-except for KeyboardInterrupt in main.py
-
-        CLO5:
-
-          degree:- src/dashboard_controller.py:      check: MatchFileFragment
-
-            - CS: "I"
-
-              rationale: "Integrating multiple modules into a complete project"    - description: Has get_mode_stats method in dashboard_controller.py      options:
-
-            - SE: "I"
-
-              rationale: "Integrating multiple modules into a complete project"      check: MatchFileFragment        fragment: "except KeyboardInterrupt"
-
-            - DS: "I"
-
-              rationale: "Integrating multiple modules into a complete project"      options:        count: 1
-
-            - INFM: "I"
-
-              rationale: "Integrating multiple modules into a complete project"        fragment: "def get_mode_stats"        exact: false
-
-
-
-- src/main.py:        count: 1
-
-    - description: Creates multiple EnvironmentSensor objects in main.py (at least 3)
-
-      check: MatchFileFragment        exact: false# Reflection checks
-
-      options:
-
-        fragment: "EnvironmentSensor("      objectives:- writing/reflection.md:
-
-        count: 3
-
-        exact: false        CLO1:    - description: Reflection has sufficient content (at least 500 words)
-
-      objectives:
-
-        CLO1:          degree:      check: CountFileWords
-
-          degree:
-
-            - CS: "I"            - CS: "I"      options:
-
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-
-            - SE: "I"              rationale: "Creating methods that return structured data (dictionaries)"        count: 500
-
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-
-            - DS: "I"            - SE: "I"        exact: false
-
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-
-            - INFM: "I"              rationale: "Creating methods that return structured data (dictionaries)"
-
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-
-            - DS: "I"- writing/reflection.md:
-
-- src/main.py:
-
-    - description: Creates DashboardController object in main.py              rationale: "Creating methods that return structured data (dictionaries)"    - description: Discusses object-oriented design in reflection
-
-      check: MatchFileFragment
-
-      options:            - INFM: "I"      check: MatchFileFragment
-
-        fragment: "DashboardController("
-
-        count: 1              rationale: "Creating methods that return structured data (dictionaries)"      options:
-
-        exact: false
-
-      objectives:        fragment: "Object-Oriented"
-
-        CLO1:
-
-          degree:- src/dashboard_controller.py:        count: 1
-
-            - CS: "I"
-
-              rationale: "Instantiating objects to build complete applications"    - description: Has reset_stats method in dashboard_controller.py        exact: false
-
-            - SE: "I"
-
-              rationale: "Instantiating objects to build complete applications"      check: MatchFileFragment
-
-            - DS: "I"
-
-              rationale: "Instantiating objects to build complete applications"      options:- writing/reflection.md:
-
-            - INFM: "I"
-
-              rationale: "Instantiating objects to build complete applications"        fragment: "def reset_stats"    - description: Discusses Git workflow in reflection
-
-
-
-- src/main.py:        count: 1      check: MatchFileFragment
-
-    - description: Uses sensors list in main.py
-
-      check: MatchFileFragment        exact: false      options:
-
-      options:
-
-        fragment: "sensors"      objectives:        fragment: "Git Workflow"
-
-        count: 5
-
-        exact: false        CLO1:        count: 1
-
-      objectives:
-
-        CLO1:          degree:        exact: false
-
-          degree:
-
-            - CS: "I"            - CS: "I"
-
-              rationale: "Using lists to manage multiple objects"
-
-            - SE: "I"              rationale: "Implementing state management and data reset functionality"- writing/reflection.md:
-
-              rationale: "Using lists to manage multiple objects"
-
-            - DS: "I"            - SE: "I"    - description: Discusses code review experience in reflection
-
-              rationale: "Using lists to manage multiple objects"
-
-            - INFM: "I"              rationale: "Implementing state management and data reset functionality"      check: MatchFileFragment
-
-              rationale: "Using lists to manage multiple objects"
-
-            - DS: "I"      options:
-
-# Check for control flow in main.py
-
-- src/main.py:              rationale: "Implementing state management and data reset functionality"        fragment: "Code Review"
-
-    - description: Uses while loop in main.py
-
-      check: MatchFileFragment            - INFM: "I"        count: 1
-
-      options:
-
-        fragment: "while"              rationale: "Implementing state management and data reset functionality"        exact: false
-
-        count: 1
-
-        exact: false
-
-      objectives:
-
-        CLO1:- src/dashboard_controller.py:- writing/reflection.md:
-
-          degree:
-
-            - CS: "I"    - description: Has get_mode_display_title method in dashboard_controller.py    - description: Discusses hardware integration in reflection
-
-              rationale: "Using loops to create continuous monitoring program"
-
-            - SE: "I"      check: MatchFileFragment      check: MatchFileFragment
-
-              rationale: "Using loops to create continuous monitoring program"
-
-            - DS: "I"      options:      options:
-
-              rationale: "Using loops to create continuous monitoring program"
-
-            - INFM: "I"        fragment: "def get_mode_display_title"        fragment: "Hardware"
-
-              rationale: "Using loops to create continuous monitoring program"
-
-        count: 1        count: 1
-
-- src/main.py:
-
-    - description: Uses for loop to iterate through sensors in main.py        exact: false        exact: false
-
-      check: MatchFileFragment
-
-      options:      objectives:
-
-        fragment: "for sensor in sensors"
-
-        count: 2        CLO1:# Check that TODOs are replaced (solution should have no TODOs)
-
-        exact: false
-
-      objectives:          degree:- src/environment_sensor.py:
-
-        CLO1:
-
-          degree:            - CS: "I"    - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)
-
-            - CS: "I"
-
-              rationale: "Iterating through collections of objects"              rationale: "Using conditional logic to generate appropriate output"      check: MatchFileFragment
-
-            - SE: "I"
-
-              rationale: "Iterating through collections of objects"            - SE: "I"      options:
-
-            - DS: "I"
-
-              rationale: "Iterating through collections of objects"              rationale: "Using conditional logic to generate appropriate output"        fragment: "TODO"
-
-            - INFM: "I"
-
-              rationale: "Iterating through collections of objects"            - DS: "I"        count: 0
-
-
-
-- src/main.py:              rationale: "Using conditional logic to generate appropriate output"        exact: true
-
-    - description: Uses elif for display modes in main.py
-
-      check: MatchFileFragment            - INFM: "I"
-
-      options:
-
-        fragment: "elif"              rationale: "Using conditional logic to generate appropriate output"- src/dashboard_controller.py:
-
-        count: 3
-
-        exact: false    - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)
-
-      objectives:
-
-        CLO1:# Check for proper usage in EnvironmentSensor      check: MatchFileFragment
-
-          degree:
-
-            - CS: "I"- src/environment_sensor.py:      options:
-
-              rationale: "Using conditional logic for multi-way branching"
-
-            - SE: "I"    - description: Uses self.reading_history list in environment_sensor.py        fragment: "TODO"
-
-              rationale: "Using conditional logic for multi-way branching"
-
-            - DS: "I"      check: MatchFileFragment        count: 0
-
-              rationale: "Using conditional logic for multi-way branching"
-
-            - INFM: "I"      options:        exact: true
-
-              rationale: "Using conditional logic for multi-way branching"
-
-        fragment: "self.reading_history"
-
-- src/main.py:
-
-    - description: Uses time.sleep in main.py        count: 3- src/main.py:
-
-      check: MatchFileFragment
-
-      options:        exact: false    - description: Complete all TODOs (no TODO comments remaining in main.py)
-
-        fragment: "time.sleep"
-
-        count: 1      objectives:      check: MatchFileFragment
-
-        exact: false
-
-      objectives:        CLO1:      options:
-
-        CLO1:
-
-          degree:          degree:        fragment: "TODO"
-
-            - CS: "I"
-
-              rationale: "Using timing functions for program flow control"            - CS: "I"        count: 0
-
-            - SE: "I"
-
-              rationale: "Using timing functions for program flow control"              rationale: "Using lists as a data structure to store historical readings"        exact: true
-
-            - DS: "I"
-
-              rationale: "Using timing functions for program flow control"            - SE: "I"
-
-            - INFM: "I"              rationale: "Using lists as a data structure to store historical readings"
-
-              rationale: "Using timing functions for program flow control"            - DS: "I"
-
-              rationale: "Using lists as a data structure to store historical readings"
-
-- src/main.py:            - INFM: "I"
-
-    - description: Uses try-except for KeyboardInterrupt in main.py              rationale: "Using lists as a data structure to store historical readings"
-
-      check: MatchFileFragment
-
-      options:- src/environment_sensor.py:
-
-        fragment: "except KeyboardInterrupt"    - description: Uses dictionary to return data in environment_sensor.py
-
-        count: 1      check: MatchFileFragment
-
-        exact: false      options:
-
-      objectives:        fragment: "return {"
-
-        CLO1:        count: 2
-
-          degree:        exact: false
-
-            - CS: "I"      objectives:
-
-              rationale: "Using exception handling for program control"        CLO1:
-
-            - SE: "I"          degree:
-
-              rationale: "Using exception handling for program control"            - CS: "I"
-
-            - DS: "I"              rationale: "Using dictionaries to organize and return structured data"
-
-              rationale: "Using exception handling for program control"            - SE: "I"
-
-            - INFM: "I"              rationale: "Using dictionaries to organize and return structured data"
-
-              rationale: "Using exception handling for program control"            - DS: "I"
-
-        CLO3:              rationale: "Using dictionaries to organize and return structured data"
-
-          degree:            - INFM: "I"
-
-            - CS: "I"              rationale: "Using dictionaries to organize and return structured data"
-
-              rationale: "Implementing robust code with proper error handling"
-
-            - SE: "I"- src/environment_sensor.py:
-
-              rationale: "Implementing robust code with proper error handling"    - description: Uses DHT22 sensor in environment_sensor.py
-
-            - DS: "I"      check: MatchFileFragment
-
-              rationale: "Implementing robust code with proper error handling"      options:
-
-        fragment: "dht.DHT22"
-
-# Reflection checks        count: 1
-
-- writing/reflection.md:        exact: false
-
-    - description: Reflection has sufficient content (at least 500 words)      objectives:
-
-      check: CountFileWords        CLO1:
-
-      options:          degree:
-
-        count: 500            - CS: "I"
-
-        exact: false              rationale: "Using external libraries to interact with hardware sensors"
-
-      objectives:            - SE: "I"
-
-        CLO4:              rationale: "Using external libraries to interact with hardware sensors"
-
-          degree:            - DS: "I"
-
-            - CS: "I"              rationale: "Using external libraries to interact with hardware sensors"
-
-              rationale: "Discussing contexts and impacts of code as cultural artifact"            - INFM: "I"
-
-            - DS: "I"              rationale: "Using external libraries to interact with hardware sensors"
-
-              rationale: "Discussing contexts and impacts of code as cultural artifact"
-
-            - INFM: "I"# Check for proper usage in DashboardController
-
-              rationale: "Discussing contexts and impacts of code as cultural artifact"- src/dashboard_controller.py:
-
-        CLO5:    - description: Uses self.display_mode attribute in dashboard_controller.py
-
-          degree:      check: MatchFileFragment
-
-            - CS: "I"      options:
-
-              rationale: "Describing implemented project comprehensively"        fragment: "self.display_mode"
-
-            - SE: "I"        count: 3
-
-              rationale: "Describing implemented project comprehensively"        exact: false
-
-            - DS: "I"      objectives:
-
-              rationale: "Describing implemented project comprehensively"        CLO1:
-
-            - INFM: "I"          degree:
-
-              rationale: "Describing implemented project comprehensively"            - CS: "I"
-
-              rationale: "Using instance variables to maintain object state"
-
-- writing/reflection.md:            - SE: "I"
-
-    - description: Discusses object-oriented design in reflection              rationale: "Using instance variables to maintain object state"
-
-      check: MatchFileFragment            - DS: "I"
-
-      options:              rationale: "Using instance variables to maintain object state"
-
-        fragment: "Object-Oriented"            - INFM: "I"
-
-        count: 1              rationale: "Using instance variables to maintain object state"
-
-        exact: false
-
-      objectives:- src/dashboard_controller.py:
-
-        CLO4:    - description: Uses self.button_press_count attribute in dashboard_controller.py
-
-          degree:      check: MatchFileFragment
-
-            - CS: "I"      options:
-
-              rationale: "Evaluating design decisions and their implications"        fragment: "self.button_press_count"
-
-            - DS: "I"        count: 2
-
-              rationale: "Evaluating design decisions and their implications"        exact: false
-
-            - INFM: "I"      objectives:
-
-              rationale: "Evaluating design decisions and their implications"        CLO1:
-
-          degree:
-
-- writing/reflection.md:            - CS: "I"
-
-    - description: Discusses Git workflow in reflection              rationale: "Using counters to track user interactions"
-
-      check: MatchFileFragment            - SE: "I"
-
-      options:              rationale: "Using counters to track user interactions"
-
-        fragment: "Git Workflow"            - DS: "I"
-
-        count: 1              rationale: "Using counters to track user interactions"
-
-        exact: false            - INFM: "I"
-
-      objectives:              rationale: "Using counters to track user interactions"
-
-        CLO2:
-
-          degree:- src/dashboard_controller.py:
-
-            - CS: "I"    - description: Uses self.mode_history list in dashboard_controller.py
-
-              rationale: "Reflecting on use of industry-standard version control tools"      check: MatchFileFragment
-
-            - SE: "I"      options:
-
-              rationale: "Reflecting on use of industry-standard version control tools"        fragment: "self.mode_history"
-
-        count: 2
-
-- writing/reflection.md:        exact: false
-
-    - description: Discusses code review experience in reflection      objectives:
-
-      check: MatchFileFragment        CLO1:
-
-      options:          degree:
-
-        fragment: "Code Review"            - CS: "I"
-
-        count: 1              rationale: "Using lists to maintain history of state changes"
-
-        exact: false            - SE: "I"
-
-      objectives:              rationale: "Using lists to maintain history of state changes"
-
-        CLO3:            - DS: "I"
-
-          degree:              rationale: "Using lists to maintain history of state changes"
-
-            - CS: "I"            - INFM: "I"
-
-              rationale: "Analyzing and suggesting revisions to code"              rationale: "Using lists to maintain history of state changes"
-
-            - SE: "I"
-
-              rationale: "Analyzing and suggesting revisions to code"- src/dashboard_controller.py:
-
-            - DS: "I"    - description: Uses .on() method for LED in dashboard_controller.py
-
-              rationale: "Analyzing and suggesting revisions to code"      check: MatchFileFragment
-
-        CLO4:      options:
-
-          degree:        fragment: ".on()"
-
-            - CS: "I"        count: 2
-
-              rationale: "Discussing collaborative practices in software development"        exact: false
-
-            - DS: "I"      objectives:
-
-              rationale: "Discussing collaborative practices in software development"        CLO1:
-
-            - INFM: "I"          degree:
-
-              rationale: "Discussing collaborative practices in software development"            - CS: "I"
-
-              rationale: "Using hardware API methods to control LED"
-
-- writing/reflection.md:            - SE: "I"
-
-    - description: Discusses hardware integration in reflection              rationale: "Using hardware API methods to control LED"
-
-      check: MatchFileFragment            - DS: "I"
-
-      options:              rationale: "Using hardware API methods to control LED"
-
-        fragment: "Hardware"            - INFM: "I"
-
-        count: 1              rationale: "Using hardware API methods to control LED"
-
-        exact: false
-
-      objectives:- src/dashboard_controller.py:
-
-        CLO4:    - description: Uses .off() method for LED in dashboard_controller.py
-
-          degree:      check: MatchFileFragment
-
-            - CS: "I"      options:
-
-              rationale: "Evaluating impacts of code interacting with physical systems"        fragment: ".off()"
-
-            - DS: "I"        count: 2
-
-              rationale: "Evaluating impacts of code interacting with physical systems"        exact: false
-
-            - INFM: "I"      objectives:
-
-              rationale: "Evaluating impacts of code interacting with physical systems"        CLO1:
-
-          degree:
-
-# Check that TODOs are replaced (solution should have no TODOs)            - CS: "I"
-
-- src/environment_sensor.py:              rationale: "Using hardware API methods to control LED"
-
-    - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)            - SE: "I"
-
-      check: MatchFileFragment              rationale: "Using hardware API methods to control LED"
-
-      options:            - DS: "I"
-
-        fragment: "TODO"              rationale: "Using hardware API methods to control LED"
-
-        count: 0            - INFM: "I"
-
-        exact: true              rationale: "Using hardware API methods to control LED"
-
-      objectives:
-
-        CLO3:- src/dashboard_controller.py:
-
-          degree:    - description: Uses for loop in dashboard_controller.py
-
-            - CS: "I"      check: MatchFileFragment
-
-              rationale: "Completing code implementation by addressing all TODOs"      options:
-
-            - SE: "I"        fragment: "for "
-
-              rationale: "Completing code implementation by addressing all TODOs"        count: 2
-
-            - DS: "I"        exact: false
-
-              rationale: "Completing code implementation by addressing all TODOs"      objectives:
-
-        CLO1:
-
-- src/dashboard_controller.py:          degree:
-
-    - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)            - CS: "I"
-
-      check: MatchFileFragment              rationale: "Using loops for repetitive operations (LED blinking)"
-
-      options:            - SE: "I"
-
-        fragment: "TODO"              rationale: "Using loops for repetitive operations (LED blinking)"
-
-        count: 0            - DS: "I"
-
-        exact: true              rationale: "Using loops for repetitive operations (LED blinking)"
-
-      objectives:            - INFM: "I"
-
-        CLO3:              rationale: "Using loops for repetitive operations (LED blinking)"
-
-          degree:
-
-            - CS: "I"- src/dashboard_controller.py:
-
-              rationale: "Completing code implementation by addressing all TODOs"    - description: Uses if statements in dashboard_controller.py
-
-            - SE: "I"      check: MatchFileFragment
-
-              rationale: "Completing code implementation by addressing all TODOs"      options:
-
-            - DS: "I"        fragment: "if "
-
-              rationale: "Completing code implementation by addressing all TODOs"        count: 5
-
-        exact: false
-
-- src/main.py:      objectives:
-
-    - description: Complete all TODOs (no TODO comments remaining in main.py)        CLO1:
-
-      check: MatchFileFragment          degree:
-
-      options:            - CS: "I"
-
-        fragment: "TODO"              rationale: "Using conditional statements for decision-making logic"
-
-        count: 0            - SE: "I"
-
-        exact: true              rationale: "Using conditional statements for decision-making logic"
-
-      objectives:            - DS: "I"
-
-        CLO3:              rationale: "Using conditional statements for decision-making logic"
-
-          degree:            - INFM: "I"
-
-            - CS: "I"              rationale: "Using conditional statements for decision-making logic"
-
-              rationale: "Completing code implementation by addressing all TODOs"
-
-            - SE: "I"# Check for docstrings
-
-              rationale: "Completing code implementation by addressing all TODOs"- src/environment_sensor.py:
-
-            - DS: "I"    - description: Has module-level docstring in environment_sensor.py
-
-              rationale: "Completing code implementation by addressing all TODOs"      check: MatchFileFragment
-
       options:
         fragment: '"""'
         count: 2
@@ -2297,6 +858,8 @@ thresholds:
           degree:
             - CS: "I"
               rationale: "Implementing robust code with proper error handling"
+            - SE: "I"
+              rationale: "Implementing robust code with proper error handling"
             - DS: "I"
               rationale: "Implementing robust code with proper error handling"
 
@@ -2371,6 +934,8 @@ thresholds:
           degree:
             - CS: "I"
               rationale: "Analyzing and suggesting revisions to code"
+            - SE: "I"
+              rationale: "Analyzing and suggesting revisions to code"
             - DS: "I"
               rationale: "Analyzing and suggesting revisions to code"
         CLO4:
@@ -2412,6 +977,8 @@ thresholds:
           degree:
             - CS: "I"
               rationale: "Completing code implementation by addressing all TODOs"
+            - SE: "I"
+              rationale: "Completing code implementation by addressing all TODOs"
             - DS: "I"
               rationale: "Completing code implementation by addressing all TODOs"
 
@@ -2427,6 +994,8 @@ thresholds:
           degree:
             - CS: "I"
               rationale: "Completing code implementation by addressing all TODOs"
+            - SE: "I"
+              rationale: "Completing code implementation by addressing all TODOs"
             - DS: "I"
               rationale: "Completing code implementation by addressing all TODOs"
 
@@ -2441,6 +1010,8 @@ thresholds:
         CLO3:
           degree:
             - CS: "I"
+              rationale: "Completing code implementation by addressing all TODOs"
+            - SE: "I"
               rationale: "Completing code implementation by addressing all TODOs"
             - DS: "I"
               rationale: "Completing code implementation by addressing all TODOs"
