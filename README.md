@@ -88,11 +88,6 @@ Use these test files to verify your physical Pico setup:
 - `test_buzzer.py` - Test buzzer alert sounds  
 - `test_environment_read.py` - Test reading DHT22 sensor
 
-**To run a hardware test:**
-```bash
-# Upload to your Pico and run
-python hardware_tests/test_button_led.py
-```
 
 #### Automated Test Suite (`testing/` folder)
 
