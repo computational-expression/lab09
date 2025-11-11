@@ -15,7 +15,7 @@ class EnvironmentSensor:
         # TODO: Handle sensor errors with try-except (OSError)
         # TODO: Return dictionary with location, temperature, humidity, and timestamp
         # Here is an example of how to get timestamp:
-        # current_time = time.localtime()
+        # current_time = time.localtime() # returns a tuple (year, month, day, hour, minute, second, weekday, yearday, isdst)
         # hours = current_time[3]
         # minutes = current_time[4]
         # seconds = current_time[5]
