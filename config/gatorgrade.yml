@@ -635,10 +635,10 @@ thresholds:
 
 # Reflection checks
 - writing/reflection.md:
-    - description: Reflection has sufficient content (at least 250 words)
+    - description: Reflection has sufficient content (at least 350 words)
       check: CountFileWords
       options:
-        count: 250
+        count: 350
         exact: false
       objectives:
         CLO4:

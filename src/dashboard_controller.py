@@ -1,7 +1,72 @@
-"""
-Dashboard Controller Module
-TODO: Complete this class to manage LED indicators, buzzer alerts, and button input.
-"""
+from machine import Pin, PWM
+import time
+
+
+class DashboardController:
+    
+    def __init__(self, led_pin, button_pin, buzzer_pin):
+        # TODO: Initialize controller with pins for LED, button, and buzzer
+        # TODO: Set up LED as output pin
+        # TODO: Set up button as input pin with pull-up resistor
+        # TODO: Set up buzzer with PWM on specified pin
+        # TODO: Initialize display_mode to "summary" (options: summary, history, alerts)
+        # TODO: Create modes list containing all three display modes
+        pass
+    
+    def toggle_led(self, is_on):
+        # TODO: Turn LED on or off based on is_on parameter (boolean)
+        pass
+    
+    def read_button(self):
+        # TODO: Read and return the current button state (0 or 1)
+        pass
+    
+    def next_display_mode(self):
+        # TODO: Cycle to the next display mode in the modes list
+        # TODO: Handle wrapping from last mode back to first mode
+        pass
+    
+    def play_alert_sound(self, duration_ms):
+        # TODO: Play buzzer alert sound for specified duration in milliseconds
+        # TODO: Set PWM frequency to 1000 Hz and duty cycle to 512 (50%)
+        # TODO: Use time.sleep_ms() for duration
+        # TODO: Turn off buzzer by setting duty cycle to 0
+        pass
+    
+    def display_sensor_data(self, sensor):
+        # TODO: Display sensor data based on current display_mode
+        # TODO: If mode is "summary", print sensor.get_status_summary()
+        # TODO: If mode is "history", print last 5 readings from sensor.reading_history
+        # TODO: If mode is "alerts", check sensor.check_alerts() and display any active alerts
+        pass
+    
+    def process_button_press(self):
+        # TODO: Handle button press to cycle through display modes
+        # TODO: Read button state (0 = pressed on pull-up configuration)
+        # TODO: If pressed, toggle LED on, play 100ms beep, cycle to next mode, add 200ms delay
+        # TODO: If not pressed, toggle LED off
+        pass
+    
+    def run_dashboard(self, sensors, check_interval=0.5):
+        # TODO: Main dashboard loop that checks button and displays sensor data
+        # TODO: Loop forever checking button and updating display
+        # TODO: Call process_button_press() to handle button input
+        # TODO: Display data from each sensor in the sensors list
+        # TODO: Sleep for check_interval seconds between iterations
+        pass
+    
+    def get_current_mode(self):
+        # TODO: Return the current display_mode string
+        pass
+
+
+if __name__ == "__main__":
+    # Test your implementation
+    controller = DashboardController(15, 16, 14)
+    print(f"Current mode: {controller.get_current_mode()}")
+    controller.next_display_mode()
+    print(f"After cycling: {controller.get_current_mode()}")
+
 from machine import Pin, PWM
 import time
 
