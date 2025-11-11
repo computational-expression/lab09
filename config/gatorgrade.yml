@@ -44,17 +44,6 @@ thresholds:
           rationale: "Using industry-standard tools (py_compile) to verify code quality"
         - SE: "I"
           rationale: "Using industry-standard tools (py_compile) to verify code quality"
-- description: Python syntax is valid in main.py
-  check: ExecuteCommand
-  options:
-    command: "python3 -m py_compile src/main.py"
-  objectives:
-    CLO2:
-      degree:
-        - CS: "I"
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"
-        - SE: "I"
-          rationale: "Using industry-standard tools (py_compile) to verify code quality"
 
 # Check for class definitions
 - src/environment_sensor.py:
@@ -422,10 +411,10 @@ thresholds:
               rationale: "Using lists as a data structure to store historical readings"
 
 - src/environment_sensor.py:
-    - description: Uses { in environment_sensor.py
+    - description: Uses dictionary in environment_sensor.py
       check: MatchFileFragment
       options:
-        fragment: "return {"
+        fragment: "{"
         count: 2
         exact: false
       objectives:
@@ -644,231 +633,12 @@ thresholds:
             - INFM: "I"
               rationale: "Implementing projects with proper documentation standards"
 
-# Check for main function and multiple objects
-- src/main.py:
-    - description: Has main function in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "def main"
-        count: 1
-        exact: false
-      objectives:
-        CLO5:
-          degree:
-            - CS: "I"
-              rationale: "Designing project with proper program structure"
-            - SE: "I"
-              rationale: "Designing project with proper program structure"
-            - DS: "I"
-              rationale: "Designing project with proper program structure"
-            - INFM: "I"
-              rationale: "Designing project with proper program structure"
-
-- src/main.py:
-    - description: Imports from environment_sensor in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "from environment_sensor import"
-        count: 1
-        exact: false
-      objectives:
-        CLO5:
-          degree:
-            - CS: "I"
-              rationale: "Integrating multiple modules into a complete project"
-            - SE: "I"
-              rationale: "Integrating multiple modules into a complete project"
-            - DS: "I"
-              rationale: "Integrating multiple modules into a complete project"
-            - INFM: "I"
-              rationale: "Integrating multiple modules into a complete project"
-
-- src/main.py:
-    - description: Imports from dashboard_controller in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "from dashboard_controller import"
-        count: 1
-        exact: false
-      objectives:
-        CLO5:
-          degree:
-            - CS: "I"
-              rationale: "Integrating multiple modules into a complete project"
-            - SE: "I"
-              rationale: "Integrating multiple modules into a complete project"
-            - DS: "I"
-              rationale: "Integrating multiple modules into a complete project"
-            - INFM: "I"
-              rationale: "Integrating multiple modules into a complete project"
-
-- src/main.py:
-    - description: Creates multiple EnvironmentSensor objects in main.py (at least 3)
-      check: MatchFileFragment
-      options:
-        fragment: "EnvironmentSensor("
-        count: 3
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-            - SE: "I"
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-            - DS: "I"
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-            - INFM: "I"
-              rationale: "Creating multiple objects to demonstrate OOP concepts"
-
-- src/main.py:
-    - description: Creates DashboardController object in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "DashboardController("
-        count: 1
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Instantiating objects to build complete applications"
-            - SE: "I"
-              rationale: "Instantiating objects to build complete applications"
-            - DS: "I"
-              rationale: "Instantiating objects to build complete applications"
-            - INFM: "I"
-              rationale: "Instantiating objects to build complete applications"
-
-- src/main.py:
-    - description: Uses sensors list in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "sensors"
-        count: 5
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using lists to manage multiple objects"
-            - SE: "I"
-              rationale: "Using lists to manage multiple objects"
-            - DS: "I"
-              rationale: "Using lists to manage multiple objects"
-            - INFM: "I"
-              rationale: "Using lists to manage multiple objects"
-
-# Check for control flow in main.py
-- src/main.py:
-    - description: Uses while loop in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "while"
-        count: 1
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using loops to create continuous monitoring program"
-            - SE: "I"
-              rationale: "Using loops to create continuous monitoring program"
-            - DS: "I"
-              rationale: "Using loops to create continuous monitoring program"
-            - INFM: "I"
-              rationale: "Using loops to create continuous monitoring program"
-
-- src/main.py:
-    - description: Uses for loop to iterate through sensors in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "for sensor in sensors"
-        count: 2
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Iterating through collections of objects"
-            - SE: "I"
-              rationale: "Iterating through collections of objects"
-            - DS: "I"
-              rationale: "Iterating through collections of objects"
-            - INFM: "I"
-              rationale: "Iterating through collections of objects"
-
-- src/main.py:
-    - description: Uses elif for display modes in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "elif"
-        count: 3
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using conditional logic for multi-way branching"
-            - SE: "I"
-              rationale: "Using conditional logic for multi-way branching"
-            - DS: "I"
-              rationale: "Using conditional logic for multi-way branching"
-            - INFM: "I"
-              rationale: "Using conditional logic for multi-way branching"
-
-- src/main.py:
-    - description: Uses time.sleep in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "time.sleep"
-        count: 1
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using timing functions for program flow control"
-            - SE: "I"
-              rationale: "Using timing functions for program flow control"
-            - DS: "I"
-              rationale: "Using timing functions for program flow control"
-            - INFM: "I"
-              rationale: "Using timing functions for program flow control"
-
-- src/main.py:
-    - description: Uses try-except for KeyboardInterrupt in main.py
-      check: MatchFileFragment
-      options:
-        fragment: "except KeyboardInterrupt"
-        count: 1
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using exception handling for program control"
-            - SE: "I"
-              rationale: "Using exception handling for program control"
-            - DS: "I"
-              rationale: "Using exception handling for program control"
-            - INFM: "I"
-              rationale: "Using exception handling for program control"
-        CLO3:
-          degree:
-            - CS: "I"
-              rationale: "Implementing robust code with proper error handling"
-            - SE: "I"
-              rationale: "Implementing robust code with proper error handling"
-            - DS: "I"
-              rationale: "Implementing robust code with proper error handling"
-
 # Reflection checks
 - writing/reflection.md:
-    - description: Reflection has sufficient content (at least 500 words)
+    - description: Reflection has sufficient content (at least 250 words)
       check: CountFileWords
       options:
-        count: 500
+        count: 250
         exact: false
       objectives:
         CLO4:
@@ -891,80 +661,31 @@ thresholds:
               rationale: "Describing implemented project comprehensively"
 
 - writing/reflection.md:
-    - description: Discusses object-oriented design in reflection
+    - description: Uses markdown lists in reflection where requested
       check: MatchFileFragment
       options:
-        fragment: "Object-Oriented"
-        count: 1
-        exact: false
-      objectives:
-        CLO4:
-          degree:
-            - CS: "I"
-              rationale: "Evaluating design decisions and their implications"
-            - DS: "I"
-              rationale: "Evaluating design decisions and their implications"
-            - INFM: "I"
-              rationale: "Evaluating design decisions and their implications"
-
-- writing/reflection.md:
-    - description: Discusses Git workflow in reflection
-      check: MatchFileFragment
-      options:
-        fragment: "Git Workflow"
-        count: 1
+        fragment: "- **"
+        count: 7
         exact: false
       objectives:
         CLO2:
           degree:
             - CS: "I"
-              rationale: "Reflecting on use of industry-standard version control tools"
+              rationale: "Following assignment formatting requirements and documentation standards"
             - SE: "I"
-              rationale: "Reflecting on use of industry-standard version control tools"
-
-- writing/reflection.md:
-    - description: Discusses code review experience in reflection
-      check: MatchFileFragment
-      options:
-        fragment: "Code Review"
-        count: 1
-        exact: false
-      objectives:
-        CLO3:
+              rationale: "Following assignment formatting requirements and documentation standards"
+        CLO5:
           degree:
             - CS: "I"
-              rationale: "Analyzing and suggesting revisions to code"
+              rationale: "Organizing reflection content with proper formatting"
             - SE: "I"
-              rationale: "Analyzing and suggesting revisions to code"
+              rationale: "Organizing reflection content with proper formatting"
             - DS: "I"
-              rationale: "Analyzing and suggesting revisions to code"
-        CLO4:
-          degree:
-            - CS: "I"
-              rationale: "Discussing collaborative practices in software development"
-            - DS: "I"
-              rationale: "Discussing collaborative practices in software development"
+              rationale: "Organizing reflection content with proper formatting"
             - INFM: "I"
-              rationale: "Discussing collaborative practices in software development"
+              rationale: "Organizing reflection content with proper formatting"
 
-- writing/reflection.md:
-    - description: Discusses hardware integration in reflection
-      check: MatchFileFragment
-      options:
-        fragment: "Hardware"
-        count: 1
-        exact: false
-      objectives:
-        CLO4:
-          degree:
-            - CS: "I"
-              rationale: "Evaluating impacts of code interacting with physical systems"
-            - DS: "I"
-              rationale: "Evaluating impacts of code interacting with physical systems"
-            - INFM: "I"
-              rationale: "Evaluating impacts of code interacting with physical systems"
-
-# Check that TODOs are replaced (solution should have no TODOs)
+# Check that TODOs are replaced in student files
 - src/environment_sensor.py:
     - description: Complete all TODOs (no TODO comments remaining in environment_sensor.py)
       check: MatchFileFragment
@@ -984,23 +705,6 @@ thresholds:
 
 - src/dashboard_controller.py:
     - description: Complete all TODOs (no TODO comments remaining in dashboard_controller.py)
-      check: MatchFileFragment
-      options:
-        fragment: "TODO"
-        count: 0
-        exact: true
-      objectives:
-        CLO3:
-          degree:
-            - CS: "I"
-              rationale: "Completing code implementation by addressing all TODOs"
-            - SE: "I"
-              rationale: "Completing code implementation by addressing all TODOs"
-            - DS: "I"
-              rationale: "Completing code implementation by addressing all TODOs"
-
-- src/main.py:
-    - description: Complete all TODOs (no TODO comments remaining in main.py)
       check: MatchFileFragment
       options:
         fragment: "TODO"

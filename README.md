@@ -1,5 +1,27 @@
 # Lab 09: Environmental Monitoring Dashboard with Git Workflow
 
+## Table of Contents
+
+- [Overview](#overview)
+- [Learning Objectives](#learning-objectives)
+- [Hardware Requirements](#hardware-requirements)
+  - [Pin Connections](#pin-connections)
+  - [Pico Pinout Reference](#pico-pinout-reference)
+  - [Board Setup Photo](#board-setup-photo)
+  - [Testing Hardware](#testing-hardware)
+- [Git Workflow for This Lab](#git-workflow-for-this-lab)
+  - [Part 1: Setting Up Your Branch](#part-1-setting-up-your-branch)
+  - [Part 2: Peer Code Review](#part-2-peer-code-review)
+  - [Part 3: Addressing Review Feedback](#part-3-addressing-review-feedback)
+  - [Part 4: Merging](#part-4-merging)
+- [Program Requirements](#program-requirements)
+  - [File 1: environment_sensor.py](#file-1-srcenvironment_sensorpy-)
+  - [File 2: dashboard_controller.py](#file-2-srcdashboard_controllerpy-)
+  - [File 3: main.py](#file-3-srcmainpy--provided---no-changes-needed)
+  - [File 4: reflection.md](#file-4-writingreflectionmd)
+- [Assessment Criteria](#assessment-criteria)
+- [Resources](#resources)
+
 ## Overview
 
 In this lab, you will create an Environmental Monitoring Dashboard that combines the temperature sensor from Lab 08 with interactive hardware from Lab 06 (LED, button). You will practice object-oriented programming by creating two classes: `EnvironmentSensor` and `DashboardController`.

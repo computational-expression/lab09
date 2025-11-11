@@ -1,161 +1,42 @@
-# Lab 09 Reflection: Environmental Monitoring Dashboard
+# Lab 09 Reflection
 
-## Part 1: Object-Oriented Design (15 points)
+## Object-Oriented Design
 
-### Class Design Choices
+Describe how you organized your two classes in this lab (use a markdown list for this answer):
 
-**EnvironmentSensor class:**
-TODO: Explain how your methods work together. For example:
-- How does `read_conditions()` use the data from the DHT22 sensor?
-- What challenges did you face implementing `get_average_temp()`? How did you handle empty lists?
-- Why did you choose specific threshold values (e.g., temp > 28) in `check_alerts()`?
+- **EnvironmentSensor class:** TODO: Describe the purpose of this class. What data does it manage? Which methods work with the DHT22 sensor? How do you use lists and dictionaries to store readings?
 
-**DashboardController class:**
-TODO: Explain your design decisions:
-- How did you implement `cycle_display_mode()` to loop through modes?
-- Why did you separate LED/button control into its own class vs. putting it in the main program?
+- **DashboardController class:** TODO: Describe the purpose of this class. What hardware does it control? How does `cycle_display_mode()` change between temperature, alerts, and history modes?
 
-### Data Structure Usage
+## Git Workflow and Code Review
 
-TODO: Explain how you used different data structures:
-- **Dictionaries:** Where did you use them? Why? Give example with specific keys.
-- **Lists:** How did you use `reading_history`? How did you limit it to 10 items?
+Describe your experience with the Git workflow and code review process (don't use markdown list for this answer)
 
-## Part 2: Git Workflow (10 points)
+TODO: Reflect on your Git workflow for this lab. How many commits did you make on your feature branch? What was your commit strategy? Describe your Pull Request - what information did you include in the description? How did you conduct code reviews for your two assigned peers? What kind of feedback did you give them (positive comments, suggestions, questions)? What feedback did you receive from your reviewers? Did you make changes based on their suggestions? How did the code review process help improve your code? What did you learn from reading other students' code?
 
-### Branch and Commit Strategy
+## Hardware Integration
 
-TODO: Describe your commit history:
-- How many commits did you make on your feature branch?
-- Give 3 examples of good commit messages you wrote
-- Did this strategy work well? What would you change?
-- Describe any Git challenges you faced and how you solved them
+Describe your experience working with the sensors and hardware (don't use markdown list for this answer)
 
-### Pull Request Process
+TODO: Reflect on the challenges you encountered with hardware. How reliable was the DHT22 temperature/humidity sensor? Did you experience any timeout or reading errors? How did you handle them? Describe your experience with the LED, button, and buzzer. Did the button respond consistently? How did you coordinate the LED blinking and buzzer sounds for alerts? What was the most challenging aspect of hardware integration?
 
-TODO: Describe your PR:
-- What sections did you include in your PR description?
-- How long did it take to get reviews?
-- Did you make any changes to your code while waiting for reviews? Describe.
+## Learning
 
-## Part 3: Code Review Experience (25 points)
+What are the most important things you learned about object-oriented programming, Git workflow, and code review during this lab? (don't use markdown list for this answer)
 
-### Giving Code Reviews
+TODO: Reflect on what you learned from this lab. Consider: how classes help organize code compared to using functions alone, what you learned about designing methods and attributes, advantages of using feature branches and pull requests for development, what makes a good code review (both giving and receiving feedback), how to write constructive code comments, what you learned from reviewing others' code, the importance of professional collaboration workflows in software development, and how code review helped you think about code quality and readability.
 
-**First PR Review:**
-TODO: For the first classmate's PR you reviewed:
-- What specific positive feedback did you give? (Give examples with line numbers)
-- What suggestions for improvement did you make? (Be specific)
-- Did you approve or request changes? Why?
+## Improvements
 
-**Second PR Review:**
-TODO: For the second classmate's PR you reviewed:
-- How was their approach different from yours?
-- What specific feedback did you provide?
-- Was reviewing the second PR easier than the first? Why or why not?
+If you were to complete this assignment again, what would you do differently? (use a markdown list for this answer)
 
-### Receiving Code Reviews
+- **Class design:** TODO: What would you change about your class structure? Would you add more methods, organize attributes differently, or improve method names?
 
-**From First Reviewer:**
-TODO: Summarize the feedback from your first reviewer:
-- What positive comments did they make?
-- What suggestions did they have?
-- Did you agree with all feedback? Explain.
-- What changes did you make based on their review?
+- **Code organization:** TODO: How would you improve your code structure, error handling, or docstrings? What would make your code more readable?
 
-**From Second Reviewer:**
-TODO: Summarize the feedback from your second reviewer:
-- What different perspective did they provide?
-- What was the most surprising or helpful suggestion?
-- How did you respond to their feedback?
+- **Git workflow:** TODO: What would you do differently with commits, branches, or pull requests? How could you improve your code review feedback?
 
-### Code Review Reflections
+- **Testing approach:** TODO: How would you test your code more systematically? What testing strategies would help?
 
-TODO: Reflect on the review process:
-- What makes a code review comment helpful vs. not helpful?
-- What did you learn from reading others' code?
+- **Time management:** TODO: How would you better plan your time for this lab? What would you start earlier?
 
-## Part 4: Hardware Integration (10 points)
-
-### Sensor and Hardware Challenges
-
-TODO: Describe your experience with the hardware:
-- DHT22 temperature sensor: How reliable was it? Any timeout issues?
-- LED, Button, and Buzzer: Did you encounter any timing or responsiveness issues?
-- What was the most challenging hardware integration? How did you solve it?
-
-## Part 5: Learning and Growth (15 points)
-
-### Key Takeaways
-
-TODO: Reflect on what you learned:
-- **OOP concepts:** What did you learn about class design? When to use methods vs attributes?
-- **Git workflow:** How did feature branches and PRs help your development process?
-- **Code review:** What makes a good code reviewer? What makes good code?
-
-### Challenges Overcome
-
-TODO: Describe your problem-solving:
-- What was the hardest challenge you faced? (Technical, Git, hardware, etc.)
-- How did you solve it? Walk through your debugging/research process.
-- Did you change your design based on reviews? Explain the improvement.
-
-## Part 6: Future Improvements (10 points)
-
-### If You Could Start Over
-
-TODO: What would you do differently?
-- **Code:** What would you restructure or refactor?
-- **Git:** How would you improve your branching/commit strategy?
-- **Testing:** How would you test your code more thoroughly?
-
-### Feature Ideas
-
-TODO: If you had more time, what would you add?
-- **Display improvements:** Different visualizations? More modes?
-- **Alert enhancements:** Different alert types? Thresholds?
-- **New hardware:** What sensors or components would enhance the project?
-
-## Part 7: Collaboration Assessment (15 points)
-
-### Peer Reviewer Evaluation
-
-**First Reviewer: [Name]**
-TODO: Rate your first reviewer (1-5 scale):
-- Timeliness: ___
-- Thoroughness: ___
-- Helpfulness: ___
-- Professionalism: ___
-- Overall: ___
-- Comments: [Explain your ratings]
-
-**Second Reviewer: [Name]**
-TODO: Rate your second reviewer (1-5 scale):
-- Timeliness: ___
-- Thoroughness: ___
-- Helpfulness: ___
-- Professionalism: ___
-- Overall: ___
-- Comments: [Explain your ratings]
-
-### Self-Assessment
-
-TODO: Rate yourself (1-5 scale):
-- Code Quality: ___
-- Review Quality: ___
-- Responsiveness: ___
-- Collaboration: ___
-- Overall Learning: ___
-
-### Final Thoughts
-
-TODO: Summarize your experience:
-- What was most valuable about this lab?
-- What would you do differently next time?
-- How has this changed your understanding of professional software development?
-
----
-
-**Name:** ___________________  
-**Date:** ___________________  
-**Time spent:** ___________________
