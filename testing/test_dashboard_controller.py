@@ -135,6 +135,101 @@ def test_get_current_mode():
     print("✓ get_current_mode test passed!")
 
 
+def test_blink_led():
+    """Test LED blinking."""
+    print("\nTesting blink_led method...")
+    
+    controller = DashboardController(15, 16, 14)
+    
+    # Test blinking (should not raise error)
+    try:
+        controller.blink_led(2, 0.1)  # Blink 2 times with 0.1s delay
+        print("✓ blink_led test passed!")
+    except Exception as e:
+        raise AssertionError(f"blink_led raised an error: {e}")
+
+
+def test_indicate_alert():
+    """Test alert indication."""
+    print("\nTesting indicate_alert method...")
+    
+    controller = DashboardController(15, 16, 14)
+    
+    # Test with alerts present
+    alert_data = {
+        'high_temp': True,
+        'low_temp': False,
+        'high_humidity': False,
+        'any_alerts': True
+    }
+    
+    try:
+        controller.indicate_alert(alert_data)
+        print("✓ indicate_alert test passed!")
+    except Exception as e:
+        raise AssertionError(f"indicate_alert raised an error: {e}")
+
+
+def test_get_mode_stats():
+    """Test getting mode statistics."""
+    print("\nTesting get_mode_stats method...")
+    
+    controller = DashboardController(15, 16, 14)
+    
+    # Get stats
+    stats = controller.get_mode_stats()
+    
+    # Should return a dictionary
+    assert isinstance(stats, dict), "get_mode_stats should return a dictionary"
+    
+    # Should contain expected keys
+    assert 'current_mode' in stats, "Stats should have current_mode"
+    assert 'button_presses' in stats, "Stats should have button_presses"
+    assert 'mode_counts' in stats, "Stats should have mode_counts"
+    
+    print("✓ get_mode_stats test passed!")
+
+
+def test_reset_stats():
+    """Test resetting statistics."""
+    print("\nTesting reset_stats method...")
+    
+    controller = DashboardController(15, 16, 14)
+    
+    # Change mode a few times to increment count
+    controller.cycle_display_mode()
+    controller.cycle_display_mode()
+    
+    # Reset stats
+    try:
+        controller.reset_stats()
+        
+        # Verify button press count is reset
+        assert controller.button_press_count == 0, "button_press_count should be 0 after reset"
+        
+        print("✓ reset_stats test passed!")
+    except Exception as e:
+        raise AssertionError(f"reset_stats raised an error: {e}")
+
+
+def test_get_mode_display_title():
+    """Test getting display mode title."""
+    print("\nTesting get_mode_display_title method...")
+    
+    controller = DashboardController(15, 16, 14)
+    
+    # Get title for current mode
+    title = controller.get_mode_display_title()
+    
+    # Should return a string
+    assert isinstance(title, str), "get_mode_display_title should return a string"
+    
+    # Should contain mode-related text
+    assert len(title) > 0, "Title should not be empty"
+    
+    print("✓ get_mode_display_title test passed!")
+
+
 def run_all_tests():
     """Run all test functions."""
     print("=" * 60)
@@ -148,6 +243,11 @@ def run_all_tests():
         test_cycle_display_mode()
         test_sound_buzzer()
         test_get_current_mode()
+        test_blink_led()
+        test_indicate_alert()
+        test_get_mode_stats()
+        test_reset_stats()
+        test_get_mode_display_title()
         
         print("\n" + "=" * 60)
         print("ALL TESTS PASSED! ✓")

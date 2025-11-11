@@ -157,6 +157,29 @@ def test_check_alerts():
     print("✓ check_alerts test passed!")
 
 
+def test_get_status_summary():
+    """Test status summary generation."""
+    print("\nTesting get_status_summary method...")
+    
+    sensor = EnvironmentSensor("Summary Test", 2)
+    
+    # Set known values
+    sensor.dht_sensor.set_values(22.5, 55.0)
+    
+    # Get summary
+    summary = sensor.get_status_summary()
+    
+    # Check that it returns a string
+    assert isinstance(summary, str), "get_status_summary should return a string"
+    
+    # Check that it contains expected information
+    assert "Summary Test" in summary, "Summary should contain location"
+    assert "22.5" in summary or "22" in summary, "Summary should contain temperature"
+    assert "55" in summary, "Summary should contain humidity"
+    
+    print("✓ get_status_summary test passed!")
+
+
 def run_all_tests():
     """Run all test functions."""
     print("=" * 60)
@@ -169,6 +192,7 @@ def run_all_tests():
         test_add_to_history()
         test_get_average_temp()
         test_check_alerts()
+        test_get_status_summary()
         
         print("\n" + "=" * 60)
         print("ALL TESTS PASSED! ✓")
