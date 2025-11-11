@@ -45,6 +45,35 @@ thresholds:
         - SE: "I"
           rationale: "Using industry-standard tools (py_compile) to verify code quality"
 
+# Run test suites
+- description: EnvironmentSensor tests pass
+  check: ExecuteCommand
+  options:
+    command: "python3 testing/test_environment_sensor.py"
+  objectives:
+    CLO3:
+      degree:
+        - CS: "I"
+          rationale: "Analyzing and verifying correct implementation through automated tests"
+        - SE: "I"
+          rationale: "Analyzing and verifying correct implementation through automated tests"
+        - DS: "I"
+          rationale: "Analyzing and verifying correct implementation through automated tests"
+
+- description: DashboardController tests pass
+  check: ExecuteCommand
+  options:
+    command: "python3 testing/test_dashboard_controller.py"
+  objectives:
+    CLO3:
+      degree:
+        - CS: "I"
+          rationale: "Analyzing and verifying correct implementation through automated tests"
+        - SE: "I"
+          rationale: "Analyzing and verifying correct implementation through automated tests"
+        - DS: "I"
+          rationale: "Analyzing and verifying correct implementation through automated tests"
+
 # Check for class definitions
 - src/environment_sensor.py:
     - description: EnvironmentSensor class is defined in environment_sensor.py
@@ -507,68 +536,30 @@ thresholds:
               rationale: "Using lists to maintain history of state changes"
 
 - src/dashboard_controller.py:
-    - description: Uses .on method in dashboard_controller.py
-      check: MatchFileFragment
-      options:
-        fragment: ".on()"
-        count: 2
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using hardware API methods to control LED"
-            - SE: "I"
-              rationale: "Using hardware API methods to control LED"
-            - DS: "I"
-              rationale: "Using hardware API methods to control LED"
-            - INFM: "I"
-              rationale: "Using hardware API methods to control LED"
-
-- src/dashboard_controller.py:
-    - description: Uses .off method in dashboard_controller.py
-      check: MatchFileFragment
-      options:
-        fragment: ".off()"
-        count: 2
-        exact: false
-      objectives:
-        CLO1:
-          degree:
-            - CS: "I"
-              rationale: "Using hardware API methods to control LED"
-            - SE: "I"
-              rationale: "Using hardware API methods to control LED"
-            - DS: "I"
-              rationale: "Using hardware API methods to control LED"
-            - INFM: "I"
-              rationale: "Using hardware API methods to control LED"
-
-- src/dashboard_controller.py:
     - description: Uses for loop in dashboard_controller.py
       check: MatchFileFragment
       options:
         fragment: "for "
-        count: 2
+        count: 1
         exact: false
       objectives:
         CLO1:
           degree:
             - CS: "I"
-              rationale: "Using loops for repetitive operations (LED blinking)"
+              rationale: "Using loops for repetitive operations"
             - SE: "I"
-              rationale: "Using loops for repetitive operations (LED blinking)"
+              rationale: "Using loops for repetitive operations"
             - DS: "I"
-              rationale: "Using loops for repetitive operations (LED blinking)"
+              rationale: "Using loops for repetitive operations"
             - INFM: "I"
-              rationale: "Using loops for repetitive operations (LED blinking)"
+              rationale: "Using loops for repetitive operations"
 
 - src/dashboard_controller.py:
     - description: Uses if statements in dashboard_controller.py
       check: MatchFileFragment
       options:
         fragment: "if "
-        count: 5
+        count: 3
         exact: false
       objectives:
         CLO1:
