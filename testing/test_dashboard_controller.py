@@ -39,6 +39,13 @@ def test_initialization():
     assert isinstance(controller.modes, list), "modes should be a list"
     assert len(controller.modes) == 3, "modes list should have 3 items"
     
+    # Check that statistics tracking is initialized
+    assert hasattr(controller, 'button_press_count'), "Controller should have button_press_count"
+    assert controller.button_press_count == 0, "button_press_count should start at 0"
+    assert hasattr(controller, 'mode_history'), "Controller should have mode_history"
+    assert isinstance(controller.mode_history, list), "mode_history should be a list"
+    assert len(controller.mode_history) == 0, "mode_history should start empty"
+    
     print("✓ Initialization test passed!")
 
 
