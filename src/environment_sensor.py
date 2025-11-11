@@ -55,7 +55,7 @@ class EnvironmentSensor:
     def get_status_summary(self):
         """
         TODO: Generate human-readable summary of current conditions.
-        - Call self.read_conditions() and store in variable c
+        - Call self.read_conditions() and store in variable conditions
         - Categorize temperature: <18="Cold", <=26="Comfortable", else="Warm"
         - Categorize humidity: <30="Dry", <=60="Comfortable", else="Humid"
         - Return formatted string with location, temp (C), humidity (%), and time
@@ -65,7 +65,7 @@ class EnvironmentSensor:
     def check_alerts(self):
         """
         TODO: Check for environmental alert conditions.
-        - Call self.read_conditions() and store in variable c
+        - Call self.read_conditions() and store in variable conditions
         - Set high_temp = True if temperature > 28, else False
         - Set low_temp = True if temperature < 16, else False
         - Set high_humidity = True if humidity > 70, else False

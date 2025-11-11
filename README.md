@@ -21,19 +21,19 @@ In this lab, you will create an Environmental Monitoring Dashboard that combines
 ## Hardware Requirements
 
 From **Lab 08:**
-- DHT22 Temperature/Humidity Sensor (GPIO 2)
-- Passive Buzzer (GPIO 14)
+- DHT22 Temperature/Humidity Sensor
+- Passive Buzzer
 
 From **Lab 06:**
-- LED (GPIO 15)
-- Button (GPIO 16)
+- LED
+- Button
 
 **New for Lab 09:**
-- No new hardware needed! We're combining previous setups.
+- No new hardware needed! We are combining previous setups.
 
 ### Pin Connections
 
-Here's the complete wiring setup for this lab:
+Here is the complete wiring setup for this lab:
 
 | Component | Pin Connection | Notes |
 |-----------|---------------|-------|
@@ -67,10 +67,6 @@ Use test files in `tests/` folder to test your hardware:
 ### Part 1: Setting Up Your Branch
 
 1. **Clone the repository** (if not already done):
-   ```bash
-   git clone <your-repo-url>
-   cd lab09-starter
-   ```
 
 2. **Create and switch to a feature branch**:
    ```bash
@@ -142,7 +138,7 @@ Once you have **two approvals**:
 
 ## Program Requirements
 
-**You only need to complete TWO Python files!** The `main.py` file is provided for you.
+**You only need to complete TWO Python files!** The complete `main.py` file is provided for you.
 
 ### File 1: `src/environment_sensor.py` 🌡️
 
@@ -168,6 +164,12 @@ Complete the `EnvironmentSensor` class that manages temperature/humidity sensor 
 - Dictionary to organize sensor data
 - If statements for alert checking
 - Loop to calculate averages
+
+**Data Structures:**
+- `reading_history` - **List of dictionaries**: Stores the last 10 sensor readings. Each reading is a dictionary containing location, temperature, humidity, and timestamp.
+  - Example: `[{'location': 'LAB_A', 'temperature': 22.5, 'humidity': 45.0, 'timestamp': '14:30:15'}, ...]`
+- `read_conditions()` returns a **dictionary** with keys: `location` (string), `temperature` (float), `humidity` (float), `timestamp` (string)
+- `check_alerts()` returns a **dictionary** with keys: `high_temp` (bool), `low_temp` (bool), `high_humidity` (bool), `any_alerts` (bool)
 
 ### File 2: `src/dashboard_controller.py` 💡
 
@@ -199,6 +201,13 @@ Complete the `DashboardController` class that manages LED, button, and buzzer ha
 - Dictionary to return statistics
 - If statements for mode switching
 - Loop for LED blinking
+
+**Data Structures:**
+- `mode_history` - **List of strings**: Tracks which display modes have been viewed in order.
+  - Example: `['temperature', 'alerts', 'temperature', 'history', 'alerts']`
+- `display_mode` - **String**: Current mode, one of `'temperature'`, `'alerts'`, or `'history'`
+- `get_mode_stats()` returns a **dictionary** with keys: `button_press_count` (int), `mode_history` (list), `current_mode` (string)
+- Alert methods work with **dictionaries** from `EnvironmentSensor.check_alerts()` containing boolean values
 
 ### File 3: `src/main.py` ✅ (Provided - No Changes Needed!)
 
