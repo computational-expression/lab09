@@ -655,8 +655,8 @@ thresholds:
     - description: Uses markdown lists in reflection where requested
       check: MatchFileFragment
       options:
-        fragment: "- **"
-        count: 7
+        fragment: "class:** This class"
+        count: 2
         exact: false
       objectives:
         CLO2:
@@ -675,6 +675,23 @@ thresholds:
               rationale: "Organizing reflection content with proper formatting"
             - INFM: "I"
               rationale: "Organizing reflection content with proper formatting"
+
+# Git Workflow Requirements
+- description: Have at least 6 commits in the repository
+  check: CountCommits
+  options:
+    count: 6
+  objectives:
+    CLO2:
+      degree:
+        - CS: "I"
+          rationale: "Using version control to track incremental progress"
+        - SE: "I"
+          rationale: "Using version control to track incremental progress"
+        - DS: "I"
+          rationale: "Using version control to track incremental progress"
+        - INFM: "I"
+          rationale: "Using version control to track incremental progress"
 
 # Check that TODOs are replaced in student files
 - src/environment_sensor.py:

@@ -78,11 +78,31 @@ Here is the complete wiring setup for this lab:
 
 ### Testing Hardware
 
-Use test files in `tests/` folder to test your hardware:
+Before starting your implementation, verify your hardware setup is working correctly.
+
+#### Hardware Test Programs (`hardware_tests/` folder)
+
+Use these test files to verify your physical Pico setup:
 
 - `test_button_led.py` - Test button reading and LED control
-- `test_buzzer.py` - Test buzzer alert sounds
-- `test_environment_read.py` - Test reading DHT22
+- `test_buzzer.py` - Test buzzer alert sounds  
+- `test_environment_read.py` - Test reading DHT22 sensor
+
+**To run a hardware test:**
+```bash
+# Upload to your Pico and run
+python hardware_tests/test_button_led.py
+```
+
+#### Automated Test Suite (`testing/` folder)
+
+**Note:** The `testing/` folder contains automated test programs that verify your Python implementation. These tests run on your computer (not on the Pico) and are used by GatorGrade for automatic grading. You don't need to run these manually - they will be executed automatically when you run `gatorgrade`.
+
+The automated tests check:
+- `test_environment_sensor.py` - Verifies EnvironmentSensor class implementation
+- `test_dashboard_controller.py` - Verifies DashboardController class implementation
+
+These use mock hardware modules so they can test your code logic without needing the physical Pico connected.
 
 ## Git Workflow for This Lab
 

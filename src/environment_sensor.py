@@ -6,21 +6,13 @@ import time
 class EnvironmentSensor:
     
     def __init__(self, location, temp_pin):
-        # Initialize sensor with location name and GPIO pin number
-        # Create empty reading_history list to store sensor readings
-        # Initialize sensor object using the temp_pin
+        # TODO: Initialize sensor with location name and GPIO pin number
+        # TODO: Create empty reading_history list to store sensor readings
+        # TODO: Initialize sensor object using the temp_pin
     
     def read_conditions(self):
         # Read temperature and humidity from sensor
         # Handle sensor errors with try-except (OSError)
-        
-        # Get current time
-        current_time = time.localtime()
-        hours = current_time[3]
-        minutes = current_time[4]
-        seconds = current_time[5]
-        timestamp = f"{hours:02d}:{minutes:02d}:{seconds:02d}"
-        
         # Return dictionary with location, temperature, humidity, and timestamp
     
     def add_to_history(self, reading):

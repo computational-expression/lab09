@@ -42,21 +42,21 @@ def test_initialization():
     print("✓ Initialization test passed!")
 
 
-def test_toggle_led():
+def test_set_led_state():
     """Test LED on/off control."""
-    print("\nTesting toggle_led method...")
+    print("\nTesting set_led_state method...")
     
     controller = DashboardController(15, 16, 14)
     
     # Test turning LED on
-    controller.toggle_led(True)
+    controller.set_led_state(True)
     assert controller.led._state == True, "LED should be on"
     
     # Test turning LED off
-    controller.toggle_led(False)
+    controller.set_led_state(False)
     assert controller.led._state == False, "LED should be off"
     
-    print("✓ toggle_led test passed!")
+    print("✓ set_led_state test passed!")
 
 
 def test_read_button():
@@ -72,9 +72,9 @@ def test_read_button():
     print("✓ read_button test passed!")
 
 
-def test_next_display_mode():
+def test_cycle_display_mode():
     """Test cycling through display modes."""
-    print("\nTesting next_display_mode method...")
+    print("\nTesting cycle_display_mode method...")
     
     controller = DashboardController(15, 16, 14)
     
@@ -82,7 +82,7 @@ def test_next_display_mode():
     initial_mode = controller.display_mode
     
     # Cycle to next mode
-    controller.next_display_mode()
+    controller.cycle_display_mode()
     second_mode = controller.display_mode
     
     # Should have changed
@@ -90,29 +90,29 @@ def test_next_display_mode():
         "Display mode should change (unless only 1 mode exists)"
     
     # Cycle through all modes and back to start
-    controller.next_display_mode()
-    controller.next_display_mode()
+    controller.cycle_display_mode()
+    controller.cycle_display_mode()
     
     # After 3 cycles, should be back to initial mode (if 3 modes)
     if len(controller.modes) == 3:
         assert controller.display_mode == initial_mode, \
             "Should cycle back to initial mode after 3 cycles"
     
-    print("✓ next_display_mode test passed!")
+    print("✓ cycle_display_mode test passed!")
 
 
-def test_play_alert_sound():
+def test_sound_buzzer():
     """Test buzzer control."""
-    print("\nTesting play_alert_sound method...")
+    print("\nTesting sound_buzzer method...")
     
     controller = DashboardController(15, 16, 14)
     
     # Test playing sound (should not raise error)
     try:
-        controller.play_alert_sound(100)  # 100ms
-        print("✓ play_alert_sound test passed!")
+        controller.sound_buzzer(100)  # 100ms
+        print("✓ sound_buzzer test passed!")
     except Exception as e:
-        raise AssertionError(f"play_alert_sound raised an error: {e}")
+        raise AssertionError(f"sound_buzzer raised an error: {e}")
 
 
 def test_get_current_mode():
@@ -143,10 +143,10 @@ def run_all_tests():
     
     try:
         test_initialization()
-        test_toggle_led()
+        test_set_led_state()
         test_read_button()
-        test_next_display_mode()
-        test_play_alert_sound()
+        test_cycle_display_mode()
+        test_sound_buzzer()
         test_get_current_mode()
         
         print("\n" + "=" * 60)
